@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[margin=0mm,	paperheight=210mm,paperwidth=297mm]{geometry} %http://ctan.org/pkg/geometry
+\usepackage{graphicx}
+
+\newcommand{\zine}[8]{%
+	\thispagestyle{empty}		
+	\centering
+	\includegraphics[width=0.24\textwidth,angle=180]{#1} % página 1
+	\hfill
+	\includegraphics[width=0.24\textwidth,angle=180]{#8} % página 8
+	\hfill
+	\includegraphics[width=0.24\textwidth,angle=180]{#7} % página 7
+	\hfill
+	\includegraphics[width=0.24\textwidth,angle=180]{#6} % página 6
+	%\vfill
+	\includegraphics[width=0.24\textwidth]{#2} % página 2
+	\hfill
+	\includegraphics[width=0.24\textwidth]{#3} % página 3
+	\hfill
+	\includegraphics[width=0.24\textwidth]{#4} % página 4
+	\hfill
+	\includegraphics[width=0.24\textwidth]{#5} % página 5
+}%
+
+\begin{document}
+
+	\zine{zine Cover 12 .pdf}{zine [1, 0, 1, 2] .pdf}{zine [2, 1, 0, 0] .pdf}{zine [0, 2, 2, 1] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [3, 0, 2, 4] [[1, 0, 1, 2], [2, 1, 0, 0], [0, 2, 2, 1]] .pdf}
+	\zine{zine Cover 13 .pdf}{zine [1, 1, 0, 1] .pdf}{zine [2, 0, 1, 2] .pdf}{zine [0, 2, 2, 0] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [3, 2, 0, 3] [[1, 1, 0, 1], [2, 0, 1, 2], [0, 2, 2, 0]] .pdf}
+	\zine{zine Cover 14 .pdf}{zine [0, 0, 0, 1] .pdf}{zine [1, 1, 2, 0] .pdf}{zine [2, 2, 1, 2] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [0, 0, 1, 2] [[0, 0, 0, 1], [1, 1, 2, 0], [2, 2, 1, 2]] .pdf}
+	\zine{zine Cover 15 .pdf}{zine [2, 2, 1, 2] .pdf}{zine [0, 0, 0, 0] .pdf}{zine [1, 1, 2, 1] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [4, 4, 2, 4] [[2, 2, 1, 2], [0, 0, 0, 0], [1, 1, 2, 1]] .pdf}
+	\zine{zine Cover 16 .pdf}{zine [1, 1, 1, 2] .pdf}{zine [0, 0, 2, 1] .pdf}{zine [2, 2, 0, 0] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [2, 2, 3, 5] [[1, 1, 1, 2], [0, 0, 2, 1], [2, 2, 0, 0]] .pdf}
+	\zine{zine Cover 17 .pdf}{zine [1, 0, 1, 2] .pdf}{zine [2, 2, 0, 1] .pdf}{zine [0, 1, 2, 0] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [3, 1, 2, 5] [[1, 0, 1, 2], [2, 2, 0, 1], [0, 1, 2, 0]] .pdf}
+	\zine{zine Cover 18 .pdf}{zine [0, 2, 1, 2] .pdf}{zine [2, 0, 2, 1] .pdf}{zine [1, 1, 0, 0] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [1, 4, 3, 5] [[0, 2, 1, 2], [2, 0, 2, 1], [1, 1, 0, 0]] .pdf}
+	\zine{zine Cover 19 .pdf}{zine [0, 0, 1, 0] .pdf}{zine [2, 1, 2, 2] .pdf}{zine [1, 2, 0, 1] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [1, 0, 3, 1] [[0, 0, 1, 0], [2, 1, 2, 2], [1, 2, 0, 1]] .pdf}
+	\zine{zine Cover 20 .pdf}{zine [1, 1, 1, 0] .pdf}{zine [0, 2, 2, 1] .pdf}{zine [2, 0, 0, 2] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [2, 3, 3, 0] [[1, 1, 1, 0], [0, 2, 2, 1], [2, 0, 0, 2]] .pdf}
+	\zine{zine Cover 21 .pdf}{zine [0, 2, 2, 1] .pdf}{zine [2, 1, 1, 2] .pdf}{zine [1, 0, 0, 0] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [1, 5, 5, 3] [[0, 2, 2, 1], [2, 1, 1, 2], [1, 0, 0, 0]] .pdf}
+	\zine{zine Cover 22 .pdf}{zine [0, 0, 1, 1] .pdf}{zine [1, 1, 2, 2] .pdf}{zine [2, 2, 0, 0] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [0, 0, 3, 3] [[0, 0, 1, 1], [1, 1, 2, 2], [2, 2, 0, 0]] .pdf}
+	\zine{zine Cover 23 .pdf}{zine [0, 2, 0, 0] .pdf}{zine [2, 0, 1, 1] .pdf}{zine [1, 1, 2, 2] .pdf}{zine blank .pdf}{zine blank .pdf}{zine blank .pdf}{zine Back [1, 4, 0, 0] [[0, 2, 0, 0], [2, 0, 1, 1], [1, 1, 2, 2]] .pdf}
+\end{document}
