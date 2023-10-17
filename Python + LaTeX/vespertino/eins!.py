@@ -57,26 +57,34 @@ def maga (i, n):
 		n = range(n)
 	return [perm(k, n) for k in i]
 
-LUGAR = 'Lugar'
-SUJEITO = 'Sujeito'
-PREDICADO = 'Predicado'
+LUGAR = 0
+SUJEITO = 1
+PREDICADO = 2
 
 ESQUERDA = 'esquerda'
 DIREITA = 'direita'
 LADO = ESQUERDA, DIREITA
 
+CONECTIVOS = {
+	(LUGAR,LUGAR): 'fica à %s',
+
+	(SUJEITO,SUJEITO): 'mora à %s',
+
+	(PREDICADO,PREDICADO): 'está à %s'
+}
+
 FRASES = {
-	(LUGAR, LUGAR):	'%s fica à %s %s',	# 1 2
+	(LUGAR, LUGAR):	'%s %s %s',	# 1 2
 	(LUGAR, SUJEITO):	'%s mora %s',	# 3 4
 	(LUGAR, PREDICADO):	'%s alguém %s',	# 5 6
 	
 	(SUJEITO, LUGAR):	'%s mora %s',	# 7 8 
-	(SUJEITO, SUJEITO):	'%s mora à %s %s',	# 9 10
+	(SUJEITO, SUJEITO):	'%s %s %s',	# 9 10
 	(SUJEITO, PREDICADO):	'%s %s',	# 11 12
 
 	(PREDICADO, LUGAR):	'Alguém %s %s',	# 13 14
 	(PREDICADO, SUJEITO):	'%s %s',	# 15 16
-	(PREDICADO, PREDICADO):	'Alguém %s está à %s %s'	# 17 18
+	(PREDICADO, PREDICADO):	'Alguém %s %s %s'	# 17 18
 }
 
 		
