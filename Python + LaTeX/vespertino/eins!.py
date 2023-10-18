@@ -61,30 +61,73 @@ LUGAR = 0
 SUJEITO = 1
 PREDICADO = 2
 
+NADA = None
+PREP_EM = -1
+PREP_DE = -2
+ART = -3
+
 ESQUERDA = 'esquerda'
 DIREITA = 'direita'
 LADO = ESQUERDA, DIREITA
 
 CONECTIVOS = {
-	(LUGAR,LUGAR): 'fica à %s',
+	(LUGAR,LUGAR): (
+		(), 
+		(ART,PREP_DE, 'fica à %s')),
+	
+	(LUGAR,SUJEITO): (
+		(PREP_EM,ART, ''), 
+		(ART,ART, 'fica à %d de onde')
+	),
+	
+	(LUGAR,PREDICADO): (
+		(PREP_EM,NADA, ''),
+		(ART,NADA, 'fica à %d de onde')
+	),
 
-	(SUJEITO,SUJEITO): 'mora à %s',
 
-	(PREDICADO,PREDICADO): 'está à %s'
+	(SUJEITO,LUGAR): (
+		(ART,PREP_EM, ''),
+		(ART,PREP_DE, 'à %d')
+	),
+
+	(SUJEITO,SUJEITO): (
+		(),
+		(ART,PREP_DE, 'mora à %s')),
+
+	(SUJEITO,PREDICADO): (
+		(ART,NADA, ''),
+		(ART,NADA, 'mora à %d de onde alguém')
+	),	
+
+
+	(PREDICADO,LUGAR): (
+		(NADA,PREP_EM, ''),
+		(NADA,PREP_DE, 'à %d')
+	),
+
+	(PREDICADO,SUJEITO): (
+		(NADA,ART, ''),
+		(NADA,ART, 'à %d de')
+	),
+
+	(PREDICADO,PREDICADO): (
+		(),
+		(NADA,ART, 'à %s de onde'))
 }
 
 FRASES = {
 	(LUGAR, LUGAR):	'%s %s %s',	# 1 2
-	(LUGAR, SUJEITO):	'%s mora %s',	# 3 4
-	(LUGAR, PREDICADO):	'%s alguém %s',	# 5 6
+	(LUGAR, SUJEITO):	'%s %s mora %s',	# 3 4
+	(LUGAR, PREDICADO):	'%s %s alguém %s',	# 5 6
 	
-	(SUJEITO, LUGAR):	'%s mora %s',	# 7 8 
+	(SUJEITO, LUGAR):	'%s mora %s %s',	# 7 8 
 	(SUJEITO, SUJEITO):	'%s %s %s',	# 9 10
-	(SUJEITO, PREDICADO):	'%s %s',	# 11 12
+	(SUJEITO, PREDICADO):	'%s %s %s',	# 11 12
 
-	(PREDICADO, LUGAR):	'Alguém %s %s',	# 13 14
-	(PREDICADO, SUJEITO):	'%s %s',	# 15 16
-	(PREDICADO, PREDICADO):	'Alguém %s %s %s'	# 17 18
+	(PREDICADO, LUGAR):	'Alguém %s %s %s',	# 13 14
+	(PREDICADO, SUJEITO):	'Alguém %s %s onde mora %s',	# 15 16
+	(PREDICADO, PREDICADO):	'Alguém %s %s alguém %s'	# 17 18
 }
 
 		
