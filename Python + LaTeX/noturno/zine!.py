@@ -127,10 +127,14 @@ def latex_pages (zine, id=None, seq=None, perm=None, pref='zine', size='', amigo
 	fila = []
 
 	nomes = []	
+	n = set()
 	if amigos_secretos_presentes_imagens:
 		for i in range(len(amigos_secretos_presentes_imagens)) if perm == None else [quad[-1] for quad in perm]:
 			aut, inst = amigos_secretos_presentes_imagens[i][-1]
+			if aut in n:
+				continue 
 			nomes.append(f'{aut} \\\\ {inst} \\\\ \hfill \\\\')
+			n.add(aut)
 	nomes.append('Akira Demenech (org.) \\\\ \\texttt{zine!.py} (desorg.)')		
 
 	n = 0 if id == None else id
