@@ -158,7 +158,7 @@ def latex_pages (zine, id=None, seq=None, perm=None, pref='zine', size='', amigo
 		
 		try:			
 			with open(tex + '.tex','x',encoding='utf8') as arq:
-				print('\\documentclass[12pt]{article} \\usepackage{graphicx} \\usepackage[bottom=6mm, top=2mm, left=5mm, right=7mm, paperheight=105mm,paperwidth=74mm]{geometry} %http://ctan.org/pkg/geometry \n\\begin{document} \\thispagestyle{empty}', ('\\' + size) * (len(size) > 0 and not size.isspace()), '\\hfill \\vfill \n',file=arq)
+				print('\\documentclass{article} \\usepackage{graphicx} \\usepackage[bottom=0.6cm, top=0.2cm, left=0.2in, right=0.4in, paperheight=105mm,paperwidth=74mm]{geometry} %http://ctan.org/pkg/geometry \n\\begin{document} \\thispagestyle{empty}', ('\\' + size) * (len(size) > 0 and not size.isspace()), '\\hfill \\vfill \n',file=arq)
 				
 				texto, figuras = pages[k]
 				print('\t',*texto, sep='\n\t',file=arq)
@@ -232,15 +232,19 @@ def pdf (files, compiler = 'pdflatex -synctex=1 -interaction=nonstopmode', wait=
 		sem = threading.Semaphore()
 		com = f'{compiler} "{f}.tex"'
 		print('\n\t',com)
-		s.append(sem)
+		
 		sem.acquire()
 		threading.Thread(target=call_after,args=(os.system, [com]), kwargs={'callback':sem.release}).start()
 		
-		if wait and (len(s) >= wait or (wait < 0 and len(s) >= len(files))):
-			for sem in s:	
-				sem.acquire()
-			s.clear()	
-		
+		if wait:
+			s.append(sem)
+			if wait > 0 and len(s) >= wait:
+				for sem in s:	
+					sem.acquire()
+				s.clear()	
+	if len(s):		
+		for sem in s:	
+			sem.acquire()
 		
 
 fila = []		
@@ -298,8 +302,11 @@ for amigos in [
 
 	m += len(permutacoes)	
 
+print('\a\b')
 input('Pronto para gerar....')
 
 pdf(fila)
 print('\nPáginas geradas')
 pdf(latex_dobra(pag)[1])
+
+print('\a\b\t Concluído!')
