@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[margin=0mm,	paperheight=210mm,paperwidth=297mm]{geometry} %http://ctan.org/pkg/geometry
+\usepackage{graphicx}
+
+\newcommand{\zine}[8]{%
+	\thispagestyle{empty}		
+	\centering
+	\includegraphics[width=0.24\textwidth,angle=180]{#1} % página 1
+	\hfill
+	\includegraphics[width=0.24\textwidth,angle=180]{#8} % página 8
+	\hfill
+	\includegraphics[width=0.24\textwidth,angle=180]{#7} % página 7
+	\hfill
+	\includegraphics[width=0.24\textwidth,angle=180]{#6} % página 6
+	%\vfill
+	\includegraphics[width=0.24\textwidth]{#2} % página 2
+	\hfill
+	\includegraphics[width=0.24\textwidth]{#3} % página 3
+	\hfill
+	\includegraphics[width=0.24\textwidth]{#4} % página 4
+	\hfill
+	\includegraphics[width=0.24\textwidth]{#5} % página 5
+}%
+
+\begin{document}
+
+	\zine{0 Cover 0 .pdf}{0 [4, 0, 3, 5] .pdf}{0 [1, 3, 2, 2] .pdf}{0 [5, 2, 4, 0] .pdf}{0 [0, 1, 0, 3] .pdf}{0 [2, 5, 1, 4] .pdf}{0 [3, 4, 5, 1] .pdf}{0 Back [522, 55, 420, 651] [[4, 0, 3, 5], [1, 3, 2, 2], [5, 2, 4, 0], [0, 1, 0, 3], [2, 5, 1, 4], [3, 4, 5, 1]] .pdf}
+	\zine{0 Cover 1 .pdf}{0 [5, 0, 4, 0] .pdf}{0 [3, 3, 1, 1] .pdf}{0 [0, 4, 0, 3] .pdf}{0 [2, 1, 5, 2] .pdf}{0 [4, 2, 3, 5] .pdf}{0 [1, 5, 2, 4] .pdf}{0 Back [675, 60, 509, 7] [[5, 0, 4, 0], [3, 3, 1, 1], [0, 4, 0, 3], [2, 1, 5, 2], [4, 2, 3, 5], [1, 5, 2, 4]] .pdf}
+	\zine{0 Cover 2 .pdf}{0 [4, 3, 1, 1] .pdf}{0 [2, 0, 5, 0] .pdf}{0 [0, 5, 3, 5] .pdf}{0 [3, 1, 4, 4] .pdf}{0 [5, 4, 0, 2] .pdf}{0 [1, 2, 2, 3] .pdf}{0 Back [531, 379, 232, 142] [[4, 3, 1, 1], [2, 0, 5, 0], [0, 5, 3, 5], [3, 1, 4, 4], [5, 4, 0, 2], [1, 2, 2, 3]] .pdf}
+\end{document}

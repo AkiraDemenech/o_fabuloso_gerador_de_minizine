@@ -243,16 +243,61 @@ def pdf (files, compiler = 'pdflatex -synctex=1 -interaction=nonstopmode', wait=
 
 fila = []		
 pag = []
-amigos = [
+
+m = 0 
+
+for amigos in [
+	[
+		['a Juju',	'da Juju',	'uma pedra',	'mpiccolo.isa.jpg',	('isabella maria píccolo','\\texttt{@mpiccolo.isa}')],
+		['Tereza',	'de Tereza',	'uma toalha de banho',	'mpiccolo.isa2.jpeg',	('isabella maria píccolo','\\texttt{@mpiccolo.isa}')],
+		['A Maria Eugênia',	'da Maria Eugênia',	'uma caixa de chocolate caribe (100 unidades)',	'laripntes.jpg',	('Larissa Pontes','\\texttt{@laripntes}')],
+		['A Maria José',	'da Maria José',	'bala fini de gelatina em formato de minhocas',	'laripntes2.jpg',	('Larissa Pontes','\\texttt{@laripntes}')],
+		['o corvo',	'do corvo',	'cachaça',	'Nocturne in B flat minor, Op. 9 no. 1_pages-to-jpg-0001.jpg',	('nathalia fante','\\texttt{@nfrtjt}')],		
+		['carpa',	'da carpa',	'lua',	'Screenshot_20231021-113435_Photos-01.jpeg',	('nathalia fante','\\texttt{@nfrtjt}')]
 	]
-for n in range(1):		
-	z = zine(amigos, ['ganhou','não podia ir, guardou pra si'], n, [random.randint(0,arranjo(3)-1) for k in range(4)])
+]: 
+	permutacoes = []
+	paginas = []
+
+	while len(permutacoes) < 3:		
+
+		n = m + len(permutacoes)
 		
-#	print(z)		
+		while True:
+			z = zine(amigos, ['ganhou','não podia ir, guardou pra si'], n, [random.randint(0,arranjo(len(amigos))-1) for k in range(4)])
+
+			p = z[-1] 
+			if p in permutacoes:
+				print('Zine',p,'já gerado')
+			else:	
+				
+				for q in p:
+					
+					if q in paginas:
+						print('Página',q,'já gerada')
+						break
+
+				else:	
+					paginas.extend(p)
+					permutacoes.append(p)
+					print('Gerado',p)
+					break
+		#	input()	
+				
+
+
+		 		
 			
-	p,f = latex_pages(*z,amigos_secretos_presentes_imagens=amigos)	
-	pag.append(p)
-	fila.extend(f)
+	#	print(z)		
+				
+		p,f = latex_pages(*z,pref=str(m),amigos_secretos_presentes_imagens=amigos)	
+		pag.append(p)
+		fila.extend(f)
+
+	m += len(permutacoes)	
+
+input('Pronto para gerar....')
+
 pdf(fila)
 print('\nPáginas geradas')
 pdf(latex_dobra(pag)[1])
