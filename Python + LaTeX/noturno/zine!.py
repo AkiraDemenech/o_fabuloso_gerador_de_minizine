@@ -158,7 +158,7 @@ def latex_pages (zine, id=None, seq=None, perm=None, pref='zine', size='', amigo
 		
 		try:			
 			with open(tex + '.tex','x',encoding='utf8') as arq:
-				print('\\documentclass[12pt]{article} \\usepackage{graphicx} \\usepackage[bottom=7mm, top=2mm, left=5mm, right=6mm, paperheight=105mm,paperwidth=74mm]{geometry} %http://ctan.org/pkg/geometry \n\\begin{document} \\thispagestyle{empty}', ('\\' + size) * (len(size) > 0 and not size.isspace()), '\\hfill \\vfill \n',file=arq)
+				print('\\documentclass[12pt]{article} \\usepackage{graphicx} \\usepackage[bottom=6mm, top=2mm, left=5mm, right=7mm, paperheight=105mm,paperwidth=74mm]{geometry} %http://ctan.org/pkg/geometry \n\\begin{document} \\thispagestyle{empty}', ('\\' + size) * (len(size) > 0 and not size.isspace()), '\\hfill \\vfill \n',file=arq)
 				
 				texto, figuras = pages[k]
 				print('\t',*texto, sep='\n\t',file=arq)
@@ -226,7 +226,7 @@ def call_after (target, args=[], kwargs={}, callback = print):
 	target(*args, **kwargs)
 	callback()
 	
-def pdf (files, compiler = 'pdflatex -synctex=1 -interaction=nonstopmode', wait=True):
+def pdf (files, compiler = 'pdflatex -synctex=1 -interaction=nonstopmode', wait=6):
 	s = []
 	for f in files:
 		sem = threading.Semaphore()
@@ -236,8 +236,10 @@ def pdf (files, compiler = 'pdflatex -synctex=1 -interaction=nonstopmode', wait=
 		sem.acquire()
 		threading.Thread(target=call_after,args=(os.system, [com]), kwargs={'callback':sem.release}).start()
 		
-	for sem in s:	
-		sem.acquire()
+		if wait and (len(s) >= wait or (wait < 0 and len(s) >= len(files))):
+			for sem in s:	
+				sem.acquire()
+			s.clear()	
 		
 		
 
