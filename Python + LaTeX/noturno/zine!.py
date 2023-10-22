@@ -158,7 +158,7 @@ def latex_pages (zine, id=None, seq=None, perm=None, pref='zine', size='', amigo
 		
 		try:			
 			with open(tex + '.tex','x',encoding='utf8') as arq:
-				print('\\documentclass[12pt]{article} \\usepackage{graphicx} \\usepackage[bottom=7mm, top=2mm, left=5mm, right=5mm, paperheight=105mm,paperwidth=74mm]{geometry} %http://ctan.org/pkg/geometry \n\\begin{document} \\thispagestyle{empty}', ('\\' + size) * (len(size) > 0 and not size.isspace()), '\\hfill \\vfill \n',file=arq)
+				print('\\documentclass[12pt]{article} \\usepackage{graphicx} \\usepackage[bottom=7mm, top=2mm, left=5mm, right=6mm, paperheight=105mm,paperwidth=74mm]{geometry} %http://ctan.org/pkg/geometry \n\\begin{document} \\thispagestyle{empty}', ('\\' + size) * (len(size) > 0 and not size.isspace()), '\\hfill \\vfill \n',file=arq)
 				
 				texto, figuras = pages[k]
 				print('\t',*texto, sep='\n\t',file=arq)
@@ -259,7 +259,7 @@ for amigos in [
 	permutacoes = []
 	paginas = []
 
-	while len(permutacoes) < 3:		
+	while len(permutacoes) < 13:		
 
 		n = m + len(permutacoes)
 		
