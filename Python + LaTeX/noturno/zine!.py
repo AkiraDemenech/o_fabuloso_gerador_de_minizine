@@ -259,7 +259,12 @@ for amigos in [
 		['A Maria Eugênia',	'da Maria Eugênia',	'uma caixa de chocolate caribe (100 unidades)',	'laripntes.jpg',	('Larissa Pontes','\\texttt{@laripntes}')],
 		['A Maria José',	'da Maria José',	'bala fini de gelatina em formato de minhocas',	'laripntes2.jpg',	('Larissa Pontes','\\texttt{@laripntes}')],
 		['o corvo',	'do corvo',	'cachaça',	'Nocturne in B flat minor, Op. 9 no. 1_pages-to-jpg-0001.jpg',	('nathalia fante','\\texttt{@nfrtjt}')],		
-		['carpa',	'da carpa',	'lua',	'Screenshot_20231021-113435_Photos-01.jpeg',	('nathalia fante','\\texttt{@nfrtjt}')]
+		['a carpa',	'da carpa',	'a lua',	'Screenshot_20231021-113435_Photos-01.jpeg',	('nathalia fante','\\texttt{@nfrtjt}')]
+	],
+	[
+		['Pedro Miguel Castelano de Oubrirres e Punha',	'de Pedro Miguel Castelano de Oubrirres e Punha',	'um pedaço de bolo',	'fabioalcover.jpg',	('Fábio Alcover','\\texttt{@fabioalcover}')],
+		['Pitu',	'de Pitu',	'um jogo de chaves de fenda',	'fabioalcover2.jpg',	('Fábio Alcover','\\texttt{@fabioalcover}')],
+		['a mãe do Pitu',	'da mãe do Pitu',	'uma roupa bem linda',	'fabioalcover3.jpg',	('Fábio Alcover','\\texttt{@fabioalcover}')]
 	]
 ]: 
 	permutacoes = []
