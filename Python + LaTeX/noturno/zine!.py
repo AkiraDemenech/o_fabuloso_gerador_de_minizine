@@ -265,7 +265,7 @@ for amigos in [
 		['Pedro Miguel Castelano de Oubrirres e Punha',	'de Pedro Miguel Castelano de Oubrirres e Punha',	'um pedaço de bolo',	'fabioalcover.jpg',	('Fábio Alcover','\\texttt{@fabioalcover}')],
 		['Pitu',	'de Pitu',	'um jogo de chaves de fenda',	'fabioalcover2.jpg',	('Fábio Alcover','\\texttt{@fabioalcover}')],
 		['a mãe do Pitu',	'da mãe do Pitu',	'uma roupa bem linda',	'fabioalcover3.jpg',	('Fábio Alcover','\\texttt{@fabioalcover}')],		
-		['Caju',	'de Caju',	'um anel da sorte (que na verdade dá azar)',	'Sapinho.png',	('Luana Bibiano','\\texttt{@luana.bibiano.m}')]		
+		['Caju',	'da Caju',	'um anel da sorte (que na verdade dá azar)',	'Sapinho.png',	('Luana Bibiano de Melo','\\texttt{@luana.bibiano.m}')]		
 	]
 ]: 
 	permutacoes = []
