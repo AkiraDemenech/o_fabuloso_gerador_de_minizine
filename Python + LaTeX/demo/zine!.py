@@ -213,7 +213,7 @@ def pdf (files, compiler = 'pdflatex -synctex=1 -interaction=nonstopmode'):
 
 fila = []		
 pag = []
-for n in range(12):		
+for n in range(10):		
 	z = zine([
 		['A Alice',	'pra Alice',	'um perfume',	'caneca.png'],
 		['O Bob',	'pro Bob',	'palavras-cruzadas',	'sudoku.png'],
