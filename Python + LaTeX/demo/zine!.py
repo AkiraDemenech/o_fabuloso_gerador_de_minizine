@@ -143,7 +143,7 @@ def latex_pages (zine, id=None, seq=None, perm=None, pref='zine', size='Huge'):
 		
 		try:			
 			with open(tex + '.tex','x',encoding='utf8') as arq:
-				print('\\documentclass{article} \\usepackage{graphicx} \\usepackage[margin=0.7in, paperheight=210mm,paperwidth=148mm]{geometry} %http://ctan.org/pkg/geometry \n\\begin{document} \\thispagestyle{empty}', '\\' + size, '\\hfill \\vfill \n',file=arq)
+				print('\\documentclass{article} \\usepackage{graphicx} \\usepackage{amsfonts} \\usepackage[margin=0.7in, paperheight=210mm,paperwidth=148mm]{geometry} %http://ctan.org/pkg/geometry \n\\begin{document} \\thispagestyle{empty}', '\\' + size, '\\hfill \\vfill \n',file=arq)
 				
 				texto, figuras = pages[k]
 				print('\t',*texto,'\n\\vfill', sep='\n\t',file=arq)
@@ -217,8 +217,11 @@ for n in range(12):
 	z = zine([
 		['A Alice',	'pra Alice',	'um perfume',	'caneca.png'],
 		['O Bob',	'pro Bob',	'palavras-cruzadas',	'sudoku.png'],
-		['Um dragão',	'para um dragão',	'um adaptador VGA-HDMI com entrada de áudio P1',	'hdmi-vga.jpg']
-	], ['deu','não podia ir, guardou pra si'], 12+n, [random.randint(0,arranjo(3)-1) for k in range(4)])
+		['Um dragão',	'para um dragão',	'um adaptador VGA-HDMI com entrada de áudio P1',	'hdmi-vga.jpg'],
+		['Dona Aranha',	'para dona Aranha',	'um barco a vela',	'031.JPG'],
+		['O Beto',	'pro Beto',	'a prova que $a^n + b^n = c^n$ não tem solução para $n > 2$ e $a,b,c,n \in \mathbb{Z}^*_+$',	'ipolon.jpg'],
+		['O metal',	'pro metal',	'medo de consciência de classe',	'klein.png']
+	], ['deu','não podia ir, guardou pra si'], n-0.3-(0.1*random.random()), [random.randint(0,arranjo(6)-1) for k in range(4)])
 		
 #	print(z)		
 			

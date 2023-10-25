@@ -273,6 +273,9 @@ for amigos in [
 	while len(permutacoes) < 13:		
 
 		n = m + len(permutacoes)
+
+		if len(permutacoes) % 36 == 0:
+			paginas.clear()
 		
 		while True:
 			z = zine(amigos, ['ganhou','não podia ir, guardou pra si'], n, [random.randint(0,arranjo(len(amigos))-1) for k in range(4)])
