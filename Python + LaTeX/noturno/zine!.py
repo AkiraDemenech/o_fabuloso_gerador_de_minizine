@@ -250,7 +250,7 @@ def pdf (files, compiler = 'pdflatex -synctex=1 -interaction=nonstopmode', wait=
 fila = []		
 pag = []
 
-m = 0 
+m = 30 
 
 for amigos in [
 	[
