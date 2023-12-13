@@ -205,12 +205,31 @@
 
 		<div class='tela margens-externas'>
 			<p>
-				Até esta parte da página não será impressa.
+				<b>Quantidade</b>:
+				<input id='qtd' type='number' min='1' step='1' value='10'/> 
+			</p>	
+
+			<p>
+				<b>ID inicial</b>:
+				<input id='id_0' type='number' value='0'/> 
 			</p>
+			<br>
 
 			<button onclick='window.print()'>
-				Imprimir
+				Imprimir páginas
 			</button>
+
+			<button onclick='limpar(zine)'>
+				Apagar zines
+			</button>
+
+			<button onclick='gerar(qtd.value,inicial.value)'>
+				Gerar!
+			</button>
+
+			<p>
+				Até esta parte da página não será impressa.
+			</p>
 		</div>
 
 		<div class='imprime' id='zine'>			 
@@ -261,17 +280,20 @@
 				<div class='conteudo margens-internas'>
 					Página 5	
 				</div>
-			</div></div>
+			</div>
+		</div>
 
 		<script>
 			zine = document.getElementById('zine')
+			qtd = document.getElementById('qtd')
+			inicial = document.getElementById('id_0')
 
 			function limpar (elemento) {
 				while(elemento.childNodes.length)
 					elemento.childNodes[0].remove()
 			} 
 
-			console.log('Larguras:\t',window.innerWidth, document.documentElement.clientWidth, document.body.clientWidth)
+		//	console.log('Larguras:\t',window.innerWidth, document.documentElement.clientWidth, document.body.clientWidth)
 
 			
 
@@ -279,8 +301,148 @@
 				if(zine.childNodes[c].nodeName == 'DIV')
 					zine.childNodes[c].style.background = 'rgb('+c*255/zine.childNodes.length+', '+(Math.random()*255)+', '+(zine.childNodes.length-c)*255/zine.childNodes.length+')'
 				
+			const dir = 'https://akirademenech.github.io/artec/img/'
+			const img = [[
+				{
+					nome:	'isabella maria píccolo',
+					insta:	'@mpiccolo.isa',
+					img:	'mpiccolo.isa.jpg',
+					presente:	'uma pedra',
+					personagem_dando:	'da Juju',
+					personagem_recebendo:	'a Juju'
+				},
+				{
+					nome:	'isabella maria píccolo',
+					insta:	'@mpiccolo.isa',
+					img:	'mpiccolo.isa2.jpeg',
+					presente:	'uma toalha de banho',
+					personagem_dando:	'de Tereza',
+					personagem_recebendo:	'Tereza'
+				},
+				{
+					nome:	'Larissa Pontes',
+					insta:	'@laripntes',
+					img:	'laripntes.jpg',
+					presente:	'uma caixa de chocolate caribe (100 unidades)',
+					personagem_dando:		'da Maria Eugênia',
+					personagem_recebendo:	'A Maria Eugênia'
+				},	
+				{
+					nome:	'Larissa Pontes',
+					insta:	'@laripntes',
+					img:	'laripntes2.jpg',
+					presente:	'bala fini de gelatina em formato de minhocas',
+					personagem_dando:		'da Maria José',
+					personagem_recebendo:	'A Maria José'
+				},	
+				{
+					nome:	'nathalia fante',
+					insta:	'@nfrtjt',
+					img:	'nfrtjt.jpg',
+					presente:	'cachaça',
+					personagem_dando:		'do corvo',
+					personagem_recebendo:	'o corvo'
+				},	
+				{
+					nome:	'nathalia fante',
+					insta:	'@nfrtjt',
+					img:	'nfrtjt2.jpeg',
+					presente:	'a lua',
+					personagem_dando:		'da carpa',
+					personagem_recebendo:	'a carpa'
+				}
+			],
+			[		
+				{
+					nome:	'Fábio Alcover',
+					insta:	'@fabioalcover',
+					img:	'fabioalcover.jpg',
+					presente:	'um pedaço de bolo',
+					personagem_dando:		'de Pedro Miguel Castelano de Oubrirres e Punha',
+					personagem_recebendo:	'Pedro Miguel Castelano de Oubrirres e Punha'
+				},	
+				{
+					nome:	'Fábio Alcover',
+					insta:	'@fabioalcover',
+					img:	'fabioalcover2.jpg',
+					presente:	'um jogo de chaves de fenda',
+					personagem_dando:		'de Pitu',
+					personagem_recebendo:	'Pitu'
+				},	
+				{
+					nome:	'Fábio Alcover',
+					insta:	'@fabioalcover',
+					img:	'fabioalcover3.jpg',
+					presente:	'uma roupa bem linda',
+					personagem_dando:		'da mãe do Pitu',
+					personagem_recebendo:	'a mãe do Pitu'
+				},	
+				{
+					nome:	'Luana Bibiano de Melo',
+					insta:	'@luana.bibiano.m',
+					img:	'Anel2.png',
+					presente:	'um pequeno violino',
+					personagem_dando:		'da Lagartinha',
+					personagem_recebendo:	'A Lagartinha'
+				},	
+				{
+					nome:	'Luana Bibiano de Melo',
+					insta:	'@luana.bibiano.m',
+					img:	'Bolo2.png',
+					presente:	'um bolo de queijo com goiabada',
+					personagem_dando:		'do Gilbertão',
+					personagem_recebendo:	'O Gilbertão'
+				},	
+				{
+					nome:	'Luana Bibiano de Melo',
+					insta:	'@luana.bibiano.m',
+					img:	'Sapinho.png',
+					presente:	'um anel da sorte (que na verdade dá azar)',
+					personagem_dando:		'da Caju',
+					personagem_recebendo:	'Caju'
+				}
+				]]
 			
 
+			function gerar (n, id) {
+				console.log('Gerando',n,'zines')
+				n = parseInt(n)
+				id = parseFloat(id)
+
+				while(n > 0) {
+					console.log(n,id)					
+
+					pag = document.createElement('div')
+					pag.id = id
+					pag.paginas = []
+					zine.appendChild(pag)
+
+					for(c = 0; c < 8; c++) {
+						p = document.createElement('div')
+						p.cont = document.createElement('div')
+						p.cont.classList.add('conteudo')
+						p.cont.classList.add('margens-internas')
+						p.classList.add('pagina')
+						p.id = id + ' ' + c						
+						p.appendChild(p.cont)						
+						pag.paginas[c] = p
+					//	p.cont.appendChild(document.createTextNode(p.id))
+					}	
+
+					for(c = 8; c > 4; c--) {
+						p = pag.paginas[c%8]
+						pag.appendChild(p)
+						p.classList.add('invertido')	
+					}
+					for(c = 1; c <= 4; c++)					 
+						pag.appendChild(pag.paginas[c])
+
+					n--
+					id++
+					
+				}
+				inicial.value = id
+			}	
 		//	limpar(zine)	
 		</script>
 	</body>
