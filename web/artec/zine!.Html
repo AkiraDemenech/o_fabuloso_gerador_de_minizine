@@ -11,11 +11,29 @@
 
 		<meta name="author" content="Akira Demenech">
 		<meta name="description" content="Zine! description">
+
+		<style> 
+			/* Estilos para a tela */ 
+			.tela { 
+				display: block; 
+			} 
+			
+			/* Estilos para a impressão */ 
+			@media print { 
+				.imprime { 
+					display: block; 
+				} 
+				
+				.tela { 
+					display: none; 
+				} 
+			} 
+		</style>
 	</head>
 
 	<body>
 		
-		<div>
+		<div class='tela'>
 			<h1>
 				<place id='n0'></place> 
 				amigues se reúnem secretamente
@@ -140,5 +158,13 @@
 					nt.appendChild(document.createTextNode(' de'))
 			}	
 		</script>
+
+		<div class='tela'>
+			<p>
+				Esta parte da página não será impressa.
+			</p>
+		</div>
+
+		<div class='imprime'>Área para impressão</div>
 	</body>
 </html>
