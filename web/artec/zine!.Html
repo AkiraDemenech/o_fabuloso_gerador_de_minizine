@@ -15,5 +15,86 @@
 
 	<body>
 		
+		<div>
+			<h1>
+				<place id='n0'></place> 
+				amigues se reúnem secretamente
+				<br> <place id='n1'></place> 
+				presentes são trocados
+			</h1>
+
+			<h2>	
+				São mais de 
+				<place id='n! text'></place> 
+				de possibilidades de quem dá qual presente pra quem (com qual imagem)
+
+				<center>
+					(<place id='n2'></place>!)<sup id='e0'></sup>
+					= (<place id='n! prod'></place>)<sup id='e1'></sup>
+					= <place id='n!'></place><sup id='e2'></sup>
+					= <place id='n!^4'></place>
+				</center>
+
+				Cada exemplar tem 
+				<place id='n3'></place> 
+				páginas 
+				<b>exclusivas</b>
+				de  
+				<place id='n^4'></place>
+				possíveis 
+				(<place id='n4'></place><sup id='e3'></sup>)
+			</h2>
+
+			<h3>
+				<code>
+					Produto livre de IA
+					<br> Produção colaborativa 
+					com algoritmo artesanal 
+					e imagens selecionadas
+				</code>
+			</h3>
+
+			
+			Os zines são gerados por um 
+			<i>script</i> em Python e 
+			renderizados com LaTeX: 
+			<a href='https://github.com/AkiraDemenech/o_fabuloso_gerador_de_minizine'>github.com/AkiraDemenech/o_fabuloso_gerador_de_minizine</a>
+				
+		</div>
+
+		<script>
+
+			const n = 6
+			const e = 4
+			formato = Intl.NumberFormat('pt-BR')
+
+			var numberplaces = ['n0', 'n1', 'n2', 'n3', 'n4']
+			for(c = 0; c < numberplaces.length; c++) 
+				document.getElementById(numberplaces[c]).appendChild(document.createTextNode(n))
+				
+			var numbersup = ['e0', 'e1', 'e2', 'e3']
+			for(c = 0; c < numbersup.length; c++) 
+				document.getElementById(numbersup[c]).appendChild(document.createTextNode(e))
+			
+
+			var fatorial = 1
+			var produto = document.getElementById('n! prod')
+			for(k = n; k > 1; k--) {
+				fatorial *= k
+				produto.appendChild(document.createTextNode(k + ' \xd7 '))	
+			}
+			produto.appendChild(document.createTextNode(1))
+			document.getElementById('n!').appendChild(document.createTextNode(fatorial))
+
+			var np = 1
+			var nf = 1
+			for(c = 0; c < e; c++) {
+				np *= n
+				nf *= fatorial
+			}
+				
+			document.getElementById('n^4').appendChild(document.createTextNode(formato.format(np)))
+			document.getElementById('n!^4').appendChild(document.createTextNode(formato.format(nf)))
+		</script>
 	</body>
 </html>
