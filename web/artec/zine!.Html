@@ -24,9 +24,9 @@
 			</h1>
 
 			<h2>	
-				São mais de 
+				São  
 				<place id='n!^4 text'></place> 
-				de possibilidades de quem dá qual presente pra quem (com qual imagem)
+				possibilidades de quem dá qual presente pra quem (com qual imagem)
 
 				<center>
 					(<place id='n2'></place>!)<sup id='e0'></sup>
@@ -96,22 +96,49 @@
 			document.getElementById('n^4').appendChild(document.createTextNode(formato.format(np)))
 			document.getElementById('n!^4').appendChild(document.createTextNode(formato.format(nf)))
 
+				
 			const grandeza = {0: '',
 				1: 'mil',
 				2: 'milhões',
 				3: 'bilhões',
-				4: 'trilhões'
+				4: 'trilhões',
+				5: 'quadrilhões',
+				6: 'quintilhões',
+				7: 'sextilhões',
+				8: 'septilhões',
+				9: 'octilhões' // */
 			}
-			g = -1
-			m = 1
-			d = 1
-			while(nf > m) {
-				g += 1
-				d = m
-				m *= 1000				
+			var esc = []
+			d = 2
+			 
+			while(nf >= 1000) {
+				g = 0
+				m = 1
+				d = 1
+				while(nf > m && grandeza[g] != undefined) {										
+					g++					
+					d = m
+					m *= 1000				
+				}
+				
+				esc[esc.length] = g - 1
+				if(d <= 1) 
+					break
+				nf /= d
+				console.log(nf,d,g, esc)
 			}
 
-			document.getElementById('n!^4 text').appendChild(document.createTextNode(Math.floor(nf/d) + '\t' + grandeza[g]))
+			
+			nt = document.getElementById('n!^4 text')
+			if (nf % 1)
+				nt.appendChild(document.createTextNode('mais de '))						
+			nt.appendChild(document.createTextNode(Math.floor(nf)))
+			while(esc.length) {
+				g = esc.pop()
+				nt.appendChild(document.createTextNode('\t' + grandeza[g]))
+				if (g > 1)
+					nt.appendChild(document.createTextNode(' de'))
+			}	
 		</script>
 	</body>
 </html>
