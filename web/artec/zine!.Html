@@ -25,7 +25,7 @@
 
 			<h2>	
 				São mais de 
-				<place id='n! text'></place> 
+				<place id='n!^4 text'></place> 
 				de possibilidades de quem dá qual presente pra quem (com qual imagem)
 
 				<center>
@@ -84,7 +84,7 @@
 				produto.appendChild(document.createTextNode(k + ' \xd7 '))	
 			}
 			produto.appendChild(document.createTextNode(1))
-			document.getElementById('n!').appendChild(document.createTextNode(fatorial))
+			document.getElementById('n!').appendChild(document.createTextNode(formato.format(fatorial)))
 
 			var np = 1
 			var nf = 1
@@ -95,6 +95,23 @@
 				
 			document.getElementById('n^4').appendChild(document.createTextNode(formato.format(np)))
 			document.getElementById('n!^4').appendChild(document.createTextNode(formato.format(nf)))
+
+			const grandeza = {0: '',
+				1: 'mil',
+				2: 'milhões',
+				3: 'bilhões',
+				4: 'trilhões'
+			}
+			g = -1
+			m = 1
+			d = 1
+			while(nf > m) {
+				g += 1
+				d = m
+				m *= 1000				
+			}
+
+			document.getElementById('n!^4 text').appendChild(document.createTextNode(Math.floor(nf/d) + '\t' + grandeza[g]))
 		</script>
 	</body>
 </html>
