@@ -79,7 +79,7 @@
 			</h1>
 
 			<h2>	
-				São  
+				São	
 				<place id='n!^4 text'></place> 
 				possibilidades de quem dá qual presente pra quem (com qual imagem)
 
@@ -94,7 +94,7 @@
 				<place id='n3'></place> 
 				páginas 
 				<b>exclusivas</b>
-				de  
+				de	
 				<place id='n^4'></place>
 				possíveis 
 				(<place id='n4'></place><sup id='e3'></sup>)
@@ -213,6 +213,8 @@
 				<b>ID inicial</b>:
 				<input id='id_0' type='number' value='0'/> 
 			</p>
+
+			<select id='tipo'></select>
 			<br>
 
 			<button onclick='window.print()'>
@@ -223,7 +225,7 @@
 				Apagar zines
 			</button>
 
-			<button onclick='gerar(qtd.value,inicial.value)'>
+			<button onclick='gerar(qtd.value,inicial.value,tipo.value)'>
 				Gerar!
 			</button>
 
@@ -285,8 +287,11 @@
 
 		<script>
 			zine = document.getElementById('zine')
+			tipo = document.getElementById('tipo')
 			qtd = document.getElementById('qtd')
 			inicial = document.getElementById('id_0')
+			
+
 
 			function limpar (elemento) {
 				while(elemento.childNodes.length)
@@ -302,7 +307,58 @@
 					zine.childNodes[c].style.background = 'rgb('+c*255/zine.childNodes.length+', '+(Math.random()*255)+', '+(zine.childNodes.length-c)*255/zine.childNodes.length+')'
 				
 			const dir = 'https://akirademenech.github.io/artec/img/'
-			const img = [[
+			const img = [
+			{tipo: 'Demo', lista: [
+				{
+					nome:	' ',
+					insta:	' ',
+					img:	'caneca.png',
+					presente:	'um perfume',
+					personagem_dando:	'pra Alice',
+					personagem_recebendo:	'A Alice'
+				},
+				{
+					nome:	' ',
+					insta:	' ',
+					img:	'sudoku.png',
+					presente:	'palavras-cruzadas',
+					personagem_dando:	'pro Bob',
+					personagem_recebendo:	'O Bob'
+				},
+				{
+					nome:	' ',
+					insta:	' ',
+					img:	'hdmi-vga.jpg',
+					presente:	'um adaptador VGA-HDMI com entrada de áudio P1',
+					personagem_dando:	'para um dragão',
+					personagem_recebendo:	'Um dragão'
+				},
+				{
+					nome:	' ',
+					insta:	' ',
+					img:	'031.JPG',
+					presente:	'um barco a vela',
+					personagem_dando:	'para dona Aranha',
+					personagem_recebendo:	'Dona Aranha'
+				},
+				{
+					nome:	' ',
+					insta:	' ',
+					img:	'ipolon.jpg',
+					presente:	'a prova que $a^n + b^n = c^n$ não tem solução para $n > 2$ e $a,b,c,n \\in \\mathbb{Z}^*_+$',
+					personagem_dando:	'pro Beto',
+					personagem_recebendo:	'O Beto'
+				},
+				{
+					nome:	' ',
+					insta:	' ',
+					img:	'klein.png',
+					presente:	'medo de consciência de classe',
+					personagem_dando:	'pro metal',
+					personagem_recebendo:	'O metal'
+				}
+			]},
+			{tipo:'Tipo',lista:[
 				{
 					nome:	'isabella maria píccolo',
 					insta:	'@mpiccolo.isa',
@@ -351,8 +407,8 @@
 					personagem_dando:		'da carpa',
 					personagem_recebendo:	'a carpa'
 				}
-			],
-			[		
+			]},
+			{tipo:'Tipo',lista:[		
 				{
 					nome:	'Fábio Alcover',
 					insta:	'@fabioalcover',
@@ -401,16 +457,23 @@
 					personagem_dando:		'da Caju',
 					personagem_recebendo:	'Caju'
 				}
-				]]
+				]}]
 			
 
-			function gerar (n, id) {
-				console.log('Gerando',n,'zines')
+			for(c = 0; c < img.length; c++) {
+				option = document.createElement('option')
+				option.value = c
+				option.appendChild(document.createTextNode(img[c].tipo + ' #' + c))
+				tipo.appendChild(option)
+			}		
+
+			function gerar (n, id, t) {
+				console.log('Gerando',n,'zines do tipo #' + t + ' começando no número',id)
 				n = parseInt(n)
 				id = parseFloat(id)
 
 				while(n > 0) {
-					console.log(n,id)					
+				//	console.log(n,id)					
 
 					pag = document.createElement('div')
 					pag.id = id
