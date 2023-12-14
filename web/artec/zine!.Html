@@ -70,7 +70,7 @@
 
 	<body>
 		
-		<div class='tela margens-externas'>
+		<div class='margens-externas' id='explica'>
 			<h1>
 				<place id='n0'></place> 
 				amigues se reúnem secretamente
@@ -230,6 +230,17 @@
 			</button>
 
 			<p>
+				<button onclick='explica.classList.add("tela")'>
+					Clique aqui  
+				</button>
+				para ocultar a explicação inicial da impressão.
+
+				<h4>
+					Lembre de imprimir 
+					em <u>paisagem</u> 
+					e <u>sem nenhuma margem</u>						
+				</h4>
+				
 				Até esta parte da página não será impressa.
 			</p>
 		</div>
@@ -238,25 +249,33 @@
 			
 			<div class='pagina invertido'>
 				<div class='conteudo margens-internas'>
-					Página 1						
+					Página 0 
+					(capa)						
 				</div>
 			</div>
 			
 			<div class='pagina invertido'>
 				<div class='conteudo margens-internas'>
-					Página 8											
-				</div>
-			</div>
-			
-			<div class='pagina invertido'>
-				<div class='conteudo margens-internas'>
-					Página 7	
+					Página 7 
+					(contracapa)											
 				</div>
 			</div>
 			
 			<div class='pagina invertido'>
 				<div class='conteudo margens-internas'>
 					Página 6	
+				</div>
+			</div>
+			
+			<div class='pagina invertido'>
+				<div class='conteudo margens-internas'>
+					Página 5	
+				</div>
+			</div>
+			
+			<div class='pagina'>
+				<div class='conteudo margens-internas'>
+					Página 1	
 				</div>
 			</div>
 			
@@ -277,19 +296,14 @@
 					Página 4	
 				</div>
 			</div>
-			
-			<div class='pagina'>
-				<div class='conteudo margens-internas'>
-					Página 5	
-				</div>
-			</div>
 		</div>
 
-		<script>
+		<script id='gera zines'>
 			zine = document.getElementById('zine')
 			tipo = document.getElementById('tipo')
 			qtd = document.getElementById('qtd')
 			inicial = document.getElementById('id_0')
+			explica = document.getElementById('explica')
 			
 
 
@@ -467,6 +481,66 @@
 				tipo.appendChild(option)
 			}		
 
+			function gerar_zine (id, lista) {
+				z = []
+				for(c = 0; c < 8; c++)
+					z[c] = document.createElement('div')
+				imagens = []
+
+
+
+				contracapa = z[7]
+				capa = document.createElement('center')
+				z[0].appendChild(capa)
+				
+				capa.titulo = document.createElement('p')
+				capa.titulo.style.fontWeight = 'bold'
+				capa.titulo.appendChild(document.createTextNode('jogo do amigo ' + ((id%2)?'secreto':'oculto') + ' ' + (((id/2)%2 < 1)?'esquisito':'delicado') + '\t' + id))
+				capa.appendChild(capa.titulo)
+				
+				for(i = 0; i < imagens.length; i++) {
+					for(j = 0; j < i; j++) 
+						if(imagens[i].nome == imagens[j].nome)
+							break
+					if(j < i)	
+						continue 
+					capa.appendChild(document.createElement('br'))
+					capa.appendChild(document.createTextNode(imagens[i].nome))					
+				}
+
+				capa.autoria = document.createElement('p')
+				capa.autoria.appendChild(document.createTextNode('Akira Demenech (org.)')) 								
+				capa.autoria.appendChild(document.createElement('br'))
+				capa.codigo = document.createElement('code') 
+				capa.codigo.appendChild(document.createTextNode('zine!.Html'))
+				capa.autoria.appendChild(capa.codigo)
+				capa.autoria.appendChild(document.createTextNode(' (desorg.)'))
+				capa.appendChild(capa.autoria)
+
+				contracapa.appendChild(document.createTextNode('Este zine foi gerado utilizando a fonte padrão da web'))
+				contracapa.appendChild(document.createElement('br'))
+				contracapa.appendChild(document.createTextNode('A semente sequencial é '))
+				contracapa.appendChild(document.createElement('br'))
+				contracapa.appendChild(document.createTextNode('A permutação correspondente é '))
+				contracapa.appendChild(document.createElement('br'))
+
+				contracapa.link = document.createElement('center')
+				contracapa.link.site = document.createElement('code') 
+				contracapa.link.appendChild(contracapa.link.site)
+				contracapa.link.qr = document.createElement('p')
+				contracapa.link.appendChild(contracapa.link.qr)
+				contracapa.appendChild(contracapa.link)
+
+				contracapa.link.site.appendChild(document.createTextNode('akirademenech.github.io'))
+
+				contracapa.link.img = document.createElement('img')
+				contracapa.link.qr.appendChild(contracapa.link.img)				
+				contracapa.link.img.src = 'zine!.svg'
+				contracapa.link.img.style.width = '50%'
+
+				return z 
+			}
+
 			function gerar (n, id, t) {
 				console.log('Gerando',n,'zines do tipo #' + t + ' começando no número',id)
 				n = parseInt(n)
@@ -475,9 +549,17 @@
 				while(n > 0) {
 				//	console.log(n,id)					
 
-					pag = document.createElement('div')
+					const pag = document.createElement('div')
+					pag.apagar = document.createElement('button')
+					pag.sep = document.createElement('p')
+					pag.sep.classList.add('tela')
 					pag.id = id
 					pag.paginas = []
+				//	pag.classList.add('imprime')
+					pag.apagar.onclick = () => { pag.remove() }
+					pag.apagar.appendChild(document.createTextNode('Deletar zine[' + id + ']'))
+					pag.sep.appendChild(pag.apagar)
+					pag.appendChild(pag.sep)
 					zine.appendChild(pag)
 
 					for(c = 0; c < 8; c++) {
@@ -500,6 +582,10 @@
 					for(c = 1; c <= 4; c++)					 
 						pag.appendChild(pag.paginas[c])
 
+					quadros = gerar_zine(id, tipo[t].lista)	
+					for(c = 0; c < quadros.length; c++)	
+						pag.paginas[c].cont.appendChild(quadros[c])
+
 					n--
 					id++
 					
@@ -507,6 +593,39 @@
 				inicial.value = id
 			}	
 		//	limpar(zine)	
+			gerar(1,-1,0)
 		</script>
+
+		<div class='tela margens-internas'>
+			Fim da página web (e das páginas para impressão)
+		</div>
+
+		<script id='mat'>
+			function arranjo (n, p = 0) {
+				c = 1
+				while (n > p) {
+					c *= n
+					n--
+				}
+				return c
+			}
+
+			function perm (i, n) {
+				t = []
+				s = []
+				for(c = 0; c < n; c++)
+					s[c] = c
+				while(n > 0) {
+					n--
+					a = arranjo(n)
+					p = s[Math.floor(i / a)]
+					i %= a
+					t[n] = p 	
+					s = s.filter((k) => (k != p))
+				//	console.log('\nn',n,'\na',a,'\np',p,'\ni',i,'\ns',s,'\nt',t)
+				}
+				return t
+			}
+ 		</script>
 	</body>
 </html>
