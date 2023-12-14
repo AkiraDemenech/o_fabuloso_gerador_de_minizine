@@ -61,7 +61,7 @@
 				left: 0;
 				right: 0;
 				bottom: 0;
-				overflow: hidden;
+				overflow-wrap: break-word;
 				position: absolute;
 				object-fit: cover; /* Redimensiona a imagem para cobrir a área */
 			}
@@ -122,7 +122,7 @@
 			</p>	
 		</div>
 
-		<script>
+		<script id='insere n'>
 
 			const n = 6
 			const e = 4
@@ -222,7 +222,7 @@
 			</button>
 
 			<button onclick='limpar(zine)'>
-				Apagar zines
+				Apagar todos os zines
 			</button>
 
 			<button onclick='gerar(qtd.value,inicial.value,tipo.value)'>
@@ -243,9 +243,10 @@
 				
 				Até esta parte da página não será impressa.
 			</p>
+
 		</div>
 
-		<div class='imprime' id='zine'>			 
+		<div id='zine'>			 
 			
 			<div class='pagina invertido'>
 				<div class='conteudo margens-internas'>
@@ -475,8 +476,11 @@
 			
 
 			for(c = 0; c < img.length; c++) {
+				for(k = 0; k < img[c].lista.length; k++)
+					img[c].lista[k].img = dir + img[c].lista[k].img
 				option = document.createElement('option')
-				option.value = c
+				option.value = c				
+				option.selected = (c == 1)
 				option.appendChild(document.createTextNode(img[c].tipo + ' #' + c))
 				tipo.appendChild(option)
 			}		
@@ -485,9 +489,54 @@
 				z = []
 				for(c = 0; c < 8; c++)
 					z[c] = document.createElement('div')
-				imagens = []
+				
 
+				semente = []
+				permuta = []
 
+				var a = arranjo(lista.length)
+				for(var c = 0; c < 4; c++) {					
+					sem = Math.floor(Math.random() * a)						
+					semente[c] = sem
+					permuta[c] = perm(sem, lista.length)
+				}	
+
+				reordenados = []
+
+				for(var i = 0; i < permuta.length; i++) {
+					reordenados[i] = []
+					for(var j = 0; j < permuta[i].length; j++)
+						reordenados[i][j] = lista[permuta[i][j]]
+				}	
+
+				imagens = reordenados[0]					
+				dando = reordenados[1]
+				recebendo = reordenados[2]
+				presentes = reordenados[3]
+			//	console.log(imagens)
+				
+				var c = 0;
+				while(c < imagens.length) {
+					texto = recebendo[c].personagem_recebendo + '\t'
+					presente = '\t' + presentes[c].presente
+					url = imagens[c].img
+					
+					if(dando[c].personagem_dando != recebendo[c].personagem_dando || dando[c].personagem_recebendo != recebendo[c].personagem_recebendo) {
+						presente += '\t' + dando[c].personagem_dando
+						texto += 'ganhou'
+					} else texto += 'não podia ir, guardou pra si'
+
+					c++
+
+					fig = document.createElement('img')	
+					centro = document.createElement('center')
+					z[c].appendChild(document.createTextNode(texto + '\t' + presente))					
+					z[c].appendChild(document.createElement('p'))
+					z[c].appendChild(centro)
+					centro.appendChild(fig)
+					fig.src = url
+					fig.style.height = '25vh'
+				}
 
 				contracapa = z[7]
 				capa = document.createElement('center')
@@ -503,9 +552,13 @@
 						if(imagens[i].nome == imagens[j].nome)
 							break
 					if(j < i)	
-						continue 
-					capa.appendChild(document.createElement('br'))
+						continue						 
+					capa.appendChild(document.createElement('p'))
+					ig = document.createElement('code')
+					ig.appendChild(document.createTextNode(imagens[i].insta))
 					capa.appendChild(document.createTextNode(imagens[i].nome))					
+					capa.appendChild(document.createElement('br'))					
+					capa.appendChild(ig)	
 				}
 
 				capa.autoria = document.createElement('p')
@@ -519,9 +572,9 @@
 
 				contracapa.appendChild(document.createTextNode('Este zine foi gerado utilizando a fonte padrão da web'))
 				contracapa.appendChild(document.createElement('br'))
-				contracapa.appendChild(document.createTextNode('A semente sequencial é '))
+				contracapa.appendChild(document.createTextNode('A semente sequencial é ' + semente))
 				contracapa.appendChild(document.createElement('br'))
-				contracapa.appendChild(document.createTextNode('A permutação correspondente é '))
+				contracapa.appendChild(document.createTextNode('A permutação correspondente é ' + permuta))
 				contracapa.appendChild(document.createElement('br'))
 
 				contracapa.link = document.createElement('center')
@@ -545,6 +598,8 @@
 				console.log('Gerando',n,'zines do tipo #' + t + ' começando no número',id)
 				n = parseInt(n)
 				id = parseFloat(id)
+
+
 
 				while(n > 0) {
 				//	console.log(n,id)					
@@ -582,7 +637,7 @@
 					for(c = 1; c <= 4; c++)					 
 						pag.appendChild(pag.paginas[c])
 
-					quadros = gerar_zine(id, tipo[t].lista)	
+					quadros = gerar_zine(id, img[t].lista)	
 					for(c = 0; c < quadros.length; c++)	
 						pag.paginas[c].cont.appendChild(quadros[c])
 
@@ -593,16 +648,17 @@
 				inicial.value = id
 			}	
 		//	limpar(zine)	
-			gerar(1,-1,0)
+			
 		</script>
 
-		<div class='tela margens-internas'>
+		<div class='tela margens-internas' id='fim'>
 			Fim da página web (e das páginas para impressão)
+			<br>
 		</div>
 
 		<script id='mat'>
 			function arranjo (n, p = 0) {
-				c = 1
+				var c = 1
 				while (n > p) {
 					c *= n
 					n--
@@ -613,6 +669,7 @@
 			function perm (i, n) {
 				t = []
 				s = []
+				var a = 1
 				for(c = 0; c < n; c++)
 					s[c] = c
 				while(n > 0) {
@@ -626,6 +683,12 @@
 				}
 				return t
 			}
+			
+			fim = document.getElementById('fim')
  		</script>
+
+		<script id='iniciar'>
+			gerar(1,-1,0)
+		</script>
 	</body>
 </html>
