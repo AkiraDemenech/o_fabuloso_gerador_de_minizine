@@ -49,6 +49,9 @@
 			} 
 
 			
+			center img {
+				width: 50%;
+			}
 
 			.pagina {
 				width: 25%;
@@ -141,7 +144,11 @@
 			var produto = document.getElementById('n! prod')
 			for(k = n; k > 1; k--) {
 				fatorial *= k
-				produto.appendChild(document.createTextNode(k + ' \xd7 '))	
+				vezes = document.createElement('span')
+				vezes.innerHTML = '&times;'
+				produto.appendChild(document.createTextNode(k + ' '))	
+				produto.appendChild(vezes)
+				produto.appendChild(document.createTextNode(' '))
 			}
 			produto.appendChild(document.createTextNode(1))
 			document.getElementById('n!').appendChild(document.createTextNode(formato.format(fatorial)))
@@ -323,7 +330,7 @@
 				
 			const dir = 'https://akirademenech.github.io/artec/img/'
 			const img = [
-			{tipo: 'Demo', lista: [
+			{tipo: 'Demo', ganhar: 'deu', guardar: 'não podia ir, guardou pra si', lista: [
 				{
 					nome:	' ',
 					insta:	' ',
@@ -360,7 +367,41 @@
 					nome:	' ',
 					insta:	' ',
 					img:	'ipolon.jpg',
-					presente:	'a prova que $a^n + b^n = c^n$ não tem solução para $n > 2$ e $a,b,c,n \\in \\mathbb{Z}^*_+$',
+					presente:	() => { 
+						
+						exp = []
+						for(m = 0; m < 3; m++) {
+							exp[m] = document.createElement('sup')
+							exp[m].appendChild(document.createTextNode('n'))
+						}	
+
+						contido = document.createElement('span')
+						contido.innerHTML = '&isinv;'
+
+						inteiros = document.createElement('span')
+						inteiros.innerHTML = '&Zopf;'
+
+						estrela = document.createElement('sup')
+						estrela.appendChild(document.createTextNode('*'))
+
+						positivo = document.createElement('sub')
+						positivo.appendChild(document.createTextNode('+'))
+
+						texto = document.createElement('span')
+						texto.appendChild(document.createTextNode('a prova que a'))
+						texto.appendChild(exp[0])
+						texto.appendChild(document.createTextNode(' + b'))
+						texto.appendChild(exp[1])
+						texto.appendChild(document.createTextNode(' = c'))
+						texto.appendChild(exp[2])
+						texto.appendChild(document.createTextNode(' não tem solução para n > 2 e a,b,c,n '))
+						texto.appendChild(contido)
+						texto.appendChild(document.createTextNode(' '))
+						texto.appendChild(inteiros)
+						texto.appendChild(estrela)
+						texto.appendChild(positivo)
+						return texto
+					},
 					personagem_dando:	'pro Beto',
 					personagem_recebendo:	'O Beto'
 				},
@@ -422,7 +463,7 @@
 					personagem_dando:		'da carpa',
 					personagem_recebendo:	'a carpa'
 				}
-			]},
+			], ganhar: 'ganhou', guardar: 'não podia ir, guardou pra si'},
 			{tipo:'Tipo',lista:[		
 				{
 					nome:	'Fábio Alcover',
@@ -472,7 +513,7 @@
 					personagem_dando:		'da Caju',
 					personagem_recebendo:	'Caju'
 				}
-				]}]
+				], ganhar: 'ganhou', guardar: 'não podia ir, guardou pra si'}]
 			
 
 			for(c = 0; c < img.length; c++) {
@@ -485,7 +526,17 @@
 				tipo.appendChild(option)
 			}		
 
-			function gerar_zine (id, lista) {
+			function inserir (corpo, texto) {
+				if(typeof texto === 'string')
+					corpo.appendChild(document.createTextNode(texto))
+				else corpo.appendChild(texto())
+				corpo.appendChild(document.createTextNode('\t'))
+			}
+
+			function gerar_zine (id, modelo) {
+				ganhar = modelo.ganhar
+				guardar = modelo.guardar
+				lista = modelo.lista
 				z = []
 				for(c = 0; c < 8; c++)
 					z[c] = document.createElement('div')
@@ -517,25 +568,32 @@
 				
 				var c = 0;
 				while(c < imagens.length) {
-					texto = recebendo[c].personagem_recebendo + '\t'
-					presente = '\t' + presentes[c].presente
+					sujeito = recebendo[c].personagem_recebendo
+					presente = presentes[c].presente
+					remetente = ''
 					url = imagens[c].img
 					
 					if(dando[c].personagem_dando != recebendo[c].personagem_dando || dando[c].personagem_recebendo != recebendo[c].personagem_recebendo) {
-						presente += '\t' + dando[c].personagem_dando
-						texto += 'ganhou'
-					} else texto += 'não podia ir, guardou pra si'
+						remetente = dando[c].personagem_dando
+						verbo = ganhar
+					} else verbo = guardar
 
 					c++
 
 					fig = document.createElement('img')	
 					centro = document.createElement('center')
-					z[c].appendChild(document.createTextNode(texto + '\t' + presente))					
+					z[c].appendChild(document.createTextNode(sujeito))					
+					z[c].appendChild(document.createTextNode('\t'))
+					z[c].appendChild(document.createTextNode(verbo))
+					z[c].appendChild(document.createTextNode('\t'))
+					inserir(z[c], presente)
+					z[c].appendChild(document.createTextNode('\t'))
+					z[c].appendChild(document.createTextNode(remetente))
 					z[c].appendChild(document.createElement('p'))
 					z[c].appendChild(centro)
 					centro.appendChild(fig)
 					fig.src = url
-					fig.style.height = '25vh'
+					
 				}
 
 				contracapa = z[7]
@@ -589,7 +647,7 @@
 				contracapa.link.img = document.createElement('img')
 				contracapa.link.qr.appendChild(contracapa.link.img)				
 				contracapa.link.img.src = 'zine!.svg'
-				contracapa.link.img.style.width = '50%'
+			//	contracapa.link.img.style.width = '50%'
 
 				return z 
 			}
@@ -637,7 +695,7 @@
 					for(c = 1; c <= 4; c++)					 
 						pag.appendChild(pag.paginas[c])
 
-					quadros = gerar_zine(id, img[t].lista)	
+					quadros = gerar_zine(id, img[t])	
 					for(c = 0; c < quadros.length; c++)	
 						pag.paginas[c].cont.appendChild(quadros[c])
 
