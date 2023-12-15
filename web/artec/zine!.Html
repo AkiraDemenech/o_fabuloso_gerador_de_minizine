@@ -20,7 +20,7 @@
 			}
 
 			.margens-internas {
-				padding: 5%;																
+				padding: 7%;																
 			}
 
 			.margens-externas {
@@ -251,6 +251,13 @@
 				Até esta parte da página não será impressa.
 			</p>
 
+			
+			<div id='campos'>
+
+			</div>
+			<button onclick='criar_tipo()'>
+				Carregar tipo custimizado
+			</button>
 		</div>
 
 		<div id='zine'>			 
@@ -575,20 +582,17 @@
 					
 					if(dando[c].personagem_dando != recebendo[c].personagem_dando || dando[c].personagem_recebendo != recebendo[c].personagem_recebendo) {
 						remetente = dando[c].personagem_dando
-						verbo = ganhar
-					} else verbo = guardar
+						verbo = (recebendo[c].ganhar == undefined) ? (ganhar) : (recebendo[c].ganhar)
+					} else verbo = (recebendo[c].guardar == undefined) ? (guardar) : (recebendo[c].guardar)
 
 					c++
 
 					fig = document.createElement('img')	
 					centro = document.createElement('center')
-					z[c].appendChild(document.createTextNode(sujeito))					
-					z[c].appendChild(document.createTextNode('\t'))
-					z[c].appendChild(document.createTextNode(verbo))
-					z[c].appendChild(document.createTextNode('\t'))
-					inserir(z[c], presente)
-					z[c].appendChild(document.createTextNode('\t'))
-					z[c].appendChild(document.createTextNode(remetente))
+					inserir(z[c], sujeito)										
+					inserir(z[c], verbo)					
+					inserir(z[c], presente)					
+					inserir(z[c], remetente)
 					z[c].appendChild(document.createElement('p'))
 					z[c].appendChild(centro)
 					centro.appendChild(fig)
@@ -743,6 +747,96 @@
 			}
 			
 			fim = document.getElementById('fim')
+			campos = document.getElementById('campos')
+			campos.lista = []
+			for(c = 0; c < n; c++) {				
+				entradas = document.createElement('p')
+				
+				entradas.nome = document.createElement('input')
+				entradas.insta = document.createElement('input')
+				
+				entradas.img = document.createElement('input')
+
+				entradas.dando = document.createElement('input')
+				entradas.recebendo = document.createElement('input')
+				
+				entradas.presente = document.createElement('input')
+
+				entradas.ganhar = document.createElement('input')
+				entradas.guardar = document.createElement('input')
+									
+
+				entradas.appendChild(entradas.nome)
+				entradas.appendChild(entradas.insta)				
+
+				entradas.appendChild(entradas.recebendo)
+				entradas.appendChild(entradas.ganhar)
+				entradas.appendChild(entradas.dando)
+				entradas.appendChild(entradas.guardar)
+
+				entradas.appendChild(entradas.presente)
+
+				entradas.appendChild(entradas.img)
+				entradas.img.type = 'file'
+				entradas.img.accept = 'image/*'
+			
+				campos.lista[c] = entradas	
+				campos.appendChild(entradas)
+
+				entradas.ganhar.value = 'ganhou'
+				entradas.guardar.value = 'não podia ir, guardou pra si'
+
+				entradas.nome.value = 'Nome para créditos'
+				entradas.insta.value = '@usuário'
+
+				entradas.dando.value = 'do Personagem ' + c
+				entradas.recebendo.value = 'O Personagem ' + c
+
+				entradas.presente.value = 'o presente ' + c
+				
+				const imagem = entradas.img
+				imagem.addEventListener('change', (e) => {
+					leitor = new FileReader()
+					leitor.onload = (evento) => {
+						imagem.atual = evento.target.result				
+					}
+					leitor.readAsDataURL(e.target.files[0])
+				})
+				imagem.atual = 'https://akirademenech.github.io/artec/'+c+'.png'
+				
+			}
+
+			function criar_tipo () {
+				lista = []
+				novo = {
+						ganhar: '', 
+						guardar: '', 
+						lista
+					}
+				for(c = 0; c < campos.lista.length; c++) {
+					lista[c] = {
+						nome:	campos.lista[c].nome.value,
+						insta:	campos.lista[c].insta.value,
+						personagem_dando:	campos.lista[c].dando.value,
+						personagem_recebendo:	campos.lista[c].recebendo.value,
+						ganhar:	campos.lista[c].ganhar.value,
+						guardar:	campos.lista[c].guardar.value,
+						presente:	campos.lista[c].presente.value
+					}
+					lista[c].img =	campos.lista[c].img.atual					
+				}
+			//	console.log(lista)
+				op = document.createElement('option')
+				op.value = img.length
+				op.appendChild(document.createTextNode('Customizado #' + op.value))				
+				tipo.appendChild(op)
+				tipo.selectedIndex = op.value
+				img[img.length] = novo
+
+				alert('Adicionado novo tipo')
+			}
+
+			
  		</script>
 
 		<script id='iniciar'>
