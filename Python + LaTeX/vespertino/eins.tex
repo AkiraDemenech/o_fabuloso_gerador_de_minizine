@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+\usepackage[paperwidth=21cm, paperheight=19cm, margin=0.7in]{geometry}
+\usepackage[T1]{fontenc}
+
+\newcommand{\linha}{ \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ }
+\newcommand{\tipo}[2]{\bigskip \item\textbf{#1 + #2}: \\}
+\newcommand{\exemplo}{\\ \textbf{Exemplo}: \hfill}
+
+
+\begin{document}
+	
+	Fiz um programa para gerar vários fanzines em PDF prontos para impressão.
+	\\ Cada zine é diferente dos demais, tendo as informações sorteadas de um conjunto fornecido a ele.
+	As informações desse conjunto precisam estar bem estruturadas e organizadas pra geração de texto fazer sentido (o programa é burro, não tem nenhuma IA nele).
+	
+	\vfill
+	
+	Minha proposta é fazer como um teste de lógica, mas sem muito sentido.
+	\\ Com 3 casas, 3 personagens e 3 ações, sorteria um conjunto de dicas para dar associando duas informações (uma casa e um personagem, por exemplo).
+	
+	\vfill
+	
+	Eu gostaria que pessoas os zines tivessem as escritas de pessoas diferentes, e por isso quero convidar vocês.
+	Peço que preencham os espaços dos 18 modelos de frases nas 3 páginas abaixo com algo que se encaixe sintaticamente, como nos exemplos.
+	
+	\vfill
+	
+	Essas 18 coisas não precisam ser iguais e coerentes. 
+	Podem ser vários personagens diferentes no papel de sujeito, vários lugares diferentes, vários predicados diferentes.
+	Personagens não precisam ser pessoas ou animais, predicados não precisam ser domésticos e os lugares não precisam ser casas.
+	
+	Essas coisas podem ser bem criativas, engraçadas ou sérias, a gosto.
+	
+	\vfill
+	
+	
+	\vfill
+	
+	Se mais do que 3 pessoas toparem, farei vários zines aos trios.
+	Se quiserem, posso colocar o insta ou alguma forma de contato pública no zine.
+	Se não, coloco só os nomes mesmo.
+	
+	
+	\newpage
+
+\begin{enumerate}
+	\tipo{Lugar*}{lugar} 
+		\linha (Lugar) \texttt{\textit{fica à esquerda} de outro lugar}.
+		\\ \underline{Uma casa amarela} \texttt{\textit{fica à esquerda} de uma casa azul}.
+		  
+	\tipo{Lugar}{lugar*} 
+		\texttt{Um lugar \textit{fica à direita}} \linha (lugar).	
+		\\ \texttt{O sobrado vermelho \textit{fica à direita}} \underline{dos correios}.
+		
+	\tipo{Lugar*}{sujeito} 
+		\linha (Lugar) \texttt{\textit{mora} o sujeito da frase}.
+		\\ \underline{Nos fundos do 201} \texttt{\textit{mora} o cachorro grande}.
+	
+	\tipo{Lugar}{sujeito*} 
+		\texttt{Em um lugar \textit{mora}} \linha (sujeito).
+		\\ \texttt{Nas casas geminadas \textit{mora}} \underline{uma samambaia festeira}.
+				
+	\tipo{Lugar*}{predicado} 
+		\linha (Lugar) \texttt{\textit{alguém} fez alguma coisa}.	
+		\\ \underline{No porão do Zé} \texttt{\textit{alguém} caiu}.
+		
+	\tipo{Lugar}{predicado*} 
+		\texttt{Em um lugar \textit{alguém}} \linha (predicado).	
+		\\ \texttt{Em cima do muro de tijolos \textit{alguém}} \underline{jogou cartas}.
+	
+	\newpage
+		
+	\tipo{Sujeito*}{lugar} 
+		\linha (Sujeito) \texttt{\textit{mora} em um lugar}.
+		\\ \underline{O gato} \texttt{\textit{mora} na árvore podada}.
+	
+	\tipo{Sujeito}{lugar*} 
+		\texttt{O sujeito da frase \textit{mora}} \linha (lugar).	
+		\\ \texttt{Uma pombinha mãe-solo \textit{mora}} \underline{em uma casa térrea alugada}.
+		
+	\tipo{Sujeito*}{sujeito} 
+		\linha (Sujeito) \texttt{\textit{mora à esquerda} de outro sujeito}.
+		\\ \underline{Uma pedra} \texttt{\textit{mora à esquerda} do corvo}.
+	
+	\tipo{Sujeito}{sujeito*} 
+		\texttt{O sujeito da frase \textit{mora à direita}} \linha (sujeito).	
+		\\ \texttt{A partitura para violoncelo \textit{mora à direita}} \underline{da minhoca que não gosta de maçã}.
+		
+	\tipo{Sujeito*}{predicado} 
+		\linha (Sujeito) \texttt{fez alguma coisa}.	
+		\\ \underline{A barata} \texttt{diz que tem 7 saias de filó}.
+	
+	\tipo{Sujeito}{predicado*} 
+		\texttt{O sujeito da frase} \linha (predicado).	
+		\\ \texttt{Ela} \underline{tem uma só}.
+		
+	\newpage	
+		
+	\tipo{Predicado*}{lugar} 
+		\texttt{\textit{Alguém}} \linha (predicado) \texttt{em um lugar}.
+		\\ \texttt{\textit{Alguém}} \underline{quebrou um vaso sanitário} \texttt{no telhado da sobrinha da Maria}.
+	
+	\tipo{Predicado}{lugar*} 
+		\texttt{\textit{Alguém} fez alguma coisa} \linha (lugar).	
+		\\ \texttt{\textit{Alguém} regou as plantas} \underline{no terreno baldio}.
+	
+	\tipo{Predicado*}{sujeito} 
+		\linha (Predicado) \texttt{sujeito}.
+		\\ \underline{Está alegre} \texttt{a galinha-d'angola}.
+	
+	\tipo{Predicado}{sujeito*} 
+		\texttt{Fez alguma coisa} \linha (sujeito).	
+		\\ \texttt{Ouviram um brado retumbante} \underline{as margens plácidas do Ipiranga}.
+	
+	\tipo{Predicado*}{predicado} 
+		\texttt{\textit{Alguém}} \linha (Predicado) \texttt{\textit{à esquerda de onde alguém} fez outra coisa}.	
+		\\ \texttt{\textit{Alguém}} \underline{abasteceu o caminhão do João} \texttt{\textit{à esquerda de onde alguém} pulava corda}.	
+	
+	\tipo{Predicado}{predicado*} 
+		\texttt{\textit{Alguém} fez alguma coisa \textit{à direita de onde alguém}} \linha (predicado).	
+		\\ \texttt{\textit{Alguém} formatou um computador HP \textit{à direita de onde alguém}} \underline{mudou a senha do wi-fi}.
+	
+\end{enumerate}
+
+\end{document}

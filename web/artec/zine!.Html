@@ -17,6 +17,7 @@
 			body {
 				margin: 0;
 				padding: 0;
+				
 			}
 
 			.margens-internas {
@@ -45,10 +46,15 @@
 				/* Estilos para a tela */
 				.tela { 
 					display: none; 					
+					
 				} 
 			} 
 
 			
+			.tela {
+				background-color: beige;
+			}
+
 			center img {
 				width: 50%;
 			}
@@ -58,6 +64,7 @@
 				padding-bottom: 35.35%;
 				float: left; /* Faz com que os blocos flutuem à esquerda */
 				position: relative;
+				
 			} 
 			.conteudo {
 				top: 0;
@@ -236,20 +243,37 @@
 				Gerar!
 			</button>
 
-			<p>
-				<button onclick='explica.classList.add("tela")'>
+			<p id='ocultar'>
+				<button onclick='ocultar()'>
 					Clique aqui  
 				</button>
 				para ocultar a explicação inicial da impressão.
 
-				<h4>
-					Lembre de imprimir 
-					em <u>paisagem</u> 
-					e <u>sem nenhuma margem</u>						
-				</h4>
 				
-				Até esta parte da página não será impressa.
+				
+				
 			</p>
+
+			<input type='color' id='capa' value='#FFF000'/>
+			<input type='color' id='capa fundo' value='#1a2b3c'/>
+			<br>
+
+			<input type='color' id='contracapa' value='#000FFF'/>
+			<input type='color' id='contracapa fundo' value='#a1b2c3'/>
+			<br>
+
+			<input type='color' id='pag' value='#000000'/>
+			<input type='color' id='pag fundo' value='#ffffff'/>
+
+			<h4 id='aviso'>
+				Lembre de imprimir 
+				em <u>paisagem</u>, 
+				<u>sem nenhuma margem</u> e						
+				<u>sem cabeçalhos</u>.
+				<br>
+				Para manter as cores de fundo, 
+				inclua a opção de <u>gráficos de segundo plano</u>.
+			</h4>
 
 			
 			<div id='campos'>
@@ -319,13 +343,28 @@
 			qtd = document.getElementById('qtd')
 			inicial = document.getElementById('id_0')
 			explica = document.getElementById('explica')
+			aviso = document.getElementById('aviso')
+
+			cor_capa = document.getElementById('capa')
+			cor_pagina = document.getElementById('pag')
+			cor_contracapa = document.getElementById('contracapa')
 			
 
+			cor_capa.fundo = document.getElementById('capa fundo')
+			cor_pagina.fundo = document.getElementById('pag fundo')
+			cor_contracapa.fundo = document.getElementById('contracapa fundo')
+			
+			
 
 			function limpar (elemento) {
 				while(elemento.childNodes.length)
 					elemento.childNodes[0].remove()
 			} 
+
+			function ocultar () {
+				explica.classList.add('tela')
+				limpar(document.getElementById('ocultar'))
+			}
 
 		//	console.log('Larguras:\t',window.innerWidth, document.documentElement.clientWidth, document.body.clientWidth)
 
@@ -653,6 +692,9 @@
 				contracapa.link.img.src = 'zine!.svg'
 			//	contracapa.link.img.style.width = '50%'
 
+				
+				
+
 				return z 
 			}
 
@@ -700,8 +742,17 @@
 						pag.appendChild(pag.paginas[c])
 
 					quadros = gerar_zine(id, img[t])	
-					for(c = 0; c < quadros.length; c++)	
+					for(c = 0; c < quadros.length; c++)	{
 						pag.paginas[c].cont.appendChild(quadros[c])
+						pag.paginas[c].style.color = cor_pagina.value
+						pag.paginas[c].style.backgroundColor = cor_pagina.fundo.value
+					}	
+
+					pag.paginas[0].style.color = cor_capa.value	
+					pag.paginas[0].style.backgroundColor = cor_capa.fundo.value
+
+					pag.paginas[7].style.color = cor_contracapa.value	
+					pag.paginas[7].style.backgroundColor = cor_contracapa.fundo.value
 
 					n--
 					id++
