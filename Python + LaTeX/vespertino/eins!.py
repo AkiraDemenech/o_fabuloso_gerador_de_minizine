@@ -301,6 +301,6 @@ def fechar_latex (escrever=print):
 
 with open(programa + '.tex', 'w', encoding='utf8') as tex:
 	abrir_latex(tex.write)
-	for num in range(0,32):	
+	for num in range(32,64):	
 		gerar_um_latex(*gerar(),num,tex.write)
 	fechar_latex(tex.write)
