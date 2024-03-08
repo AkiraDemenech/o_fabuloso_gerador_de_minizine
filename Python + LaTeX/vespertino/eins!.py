@@ -1,7 +1,52 @@
-import threading
+#import threading
 import random	
-import os	
+#import os	
 import sys 
+from matplotlib import pyplot 
+
+def imagem (v, l, h):
+	fig = [[(255,)*3 for j in range(h*l)] for i in range(l*h)]
+	coord = [(i, j) for j in range(h) for i in range(l)]				
+	Coord = [(i * h, j * l) for i, j in coord]
+
+	g = (random.randint(0,125),) * 3
+
+	u = None
+	linhas = []
+	
+	for c in range(len(v)):
+		x,y = Coord[v[c] % (l*h)]
+		w,z = coord[c]
+
+		x += z 
+		y += w
+
+		if u == None:
+			u = x, y
+		else:	
+			linhas.append((u, (x, y)))
+			u = None
+
+	for a,b in linhas:		
+		x,y = a
+		w,z = b
+
+		c = max(abs(x - w), abs(y - z))
+		dx = (w - x) / c
+		dy = (z - y) / c
+		for k in range(c + 1):
+			fig[x][y] = g
+			x = int(x + dx)
+			y = int(y + dy)
+
+	ext = 'pdf'
+	arq = str(v) + '.' + ext
+
+	pyplot.imshow(fig) 
+	pyplot.savefig(arq, format=ext)
+	pyplot.clf()
+#	pyplot.show()
+	return arq
 
 sorteados = []
 
@@ -21,7 +66,6 @@ def creditar (nomes, n):
 		nomes[n] = 0
 	nomes[n] += 1	
 
-	
 def concordar (*f):	
 	r = []	
 	c = None
@@ -103,9 +147,12 @@ def gerar (largura = 4, coluna = (lugar, sujeito, predicado), dados = eins.dados
 
 	# sortear  
 	pos = []
+	seq = []
 	for c in range(len(teste)):
 		for h in range(len(teste[c])):
-			pos.insert(sortear(0,len(pos)),(c,h))
+			q = sortear(0, len(pos))
+			seq.append(q)
+			pos.insert(q,(c,h))
 
 	# pares 
 	while len(pos):	
@@ -137,20 +184,23 @@ def gerar (largura = 4, coluna = (lugar, sujeito, predicado), dados = eins.dados
 	sorteios = list(sorteados)	
 	sorteados.clear()
 
-	return frases, aut, sorteios, teste	
+	figura = imagem(seq,largura,len(coluna))
+	#contrafigura = imagem(sorteios,largura,len(coluna))
+
+	return frases, aut, teste, sorteios, figura 	
 
 
 	
 
-def gerar_um_latex (frases, aut, sorte=None, id=None, escrever=print):
-	escrever('''\n\n\\pagebreak
-			\\ttfamily % monoespaçada
+def gerar_um_latex (frases, aut, matriz, sorte=None, img=None, id=None, escrever=print):
+	escrever('''\n\n\\pagebreak			
 			\\pagenumbering{gobble} % nenhuma numeração
 
 	\\ 
 	\\vfill
 	\\begin{turn}{180}	
 		\\begin{minipage}{\\textwidth}
+		  	\\ttfamily % monoespaçada
 			\\centering
 			{\\Huge 2e-2}
 		  
@@ -159,7 +209,7 @@ def gerar_um_latex (frases, aut, sorte=None, id=None, escrever=print):
 			''')	
 	
 	for n in aut:
-		escrever('\n\n\\textit{' + n + '}\n\t\ ' + str((aut[n] * 50) // len(frases)) + ' \%')
+		escrever('\n\n\\textit{\\small ' + n + '}\n\t%\ ' + str(aut[n]))
 
 	escrever('\n\n\\bigskip\n\n' + programa) 
 
@@ -175,22 +225,42 @@ def gerar_um_latex (frases, aut, sorte=None, id=None, escrever=print):
 \\pagebreak
 
 	\\begin{turn}{180}	
-		\\begin{minipage}{\\textwidth}''')
+		\\begin{minipage}{\\textwidth}		  
+		% texto 
+		  Documento gerado com \\LaTeX			
+		  
+		  \\texttt{akirademenech.github.io}
+
+		% qr code
+		  \\includegraphics[height=0.3\\textheight]{2e-2.pdf}
+
+		\\end{minipage}	
+	\\end{turn}  
+		  
+		\\vfill  
+		  ''')
 	
 	if sorte != None:
-		escrever(str(sorte))
+	#	escrever('\n\\begin{minipage}{0.7\\textwidth}')
+		escrever('\n{')
+		for i,j,k in sorte:
+			escrever(f'\n\t{k}\t% {i} {j}')
+			if i == 0 and j == 0:
+				escrever('\n')
+		escrever('\n}')  
+	#	escrever('\\end{minipage}\n')
 		  
 	escrever('''	  
-				
-		\\end{minipage}	
-	\\end{turn} 
+		    	
+
+		 
 
 \\pagebreak
-\\sffamily
-\\large
+
 
 	\\begin{enumerate}
-	
+		  \\sffamily % sem serifa
+		  \\large % grande 
 ''')			
 
 	for a,b,c in frases:
@@ -199,7 +269,20 @@ def gerar_um_latex (frases, aut, sorte=None, id=None, escrever=print):
 
 	escrever('''
 	\\end{enumerate}
+		  
+		  \\hfill
+
+		  \\vfill
+	% ilustração''')
+
+	if img != None:
+		escrever('\n\n\\includegraphics[width=\\textwidth]{' + img + '}\n\n')	  
+		  
+	escrever('''
+	\hfill	  	  
 ''')
+	
+	escrever('\n\t%' + str(matriz))
 
 def abrir_latex (escrever=print):
 	escrever('''\\documentclass[12pt]{article}
@@ -218,6 +301,6 @@ def fechar_latex (escrever=print):
 
 with open(programa + '.tex', 'w', encoding='utf8') as tex:
 	abrir_latex(tex.write)
-	for num in range(5):	
-		gerar_um_latex(*gerar()[:3],num,tex.write)
+	for num in range(0,32):	
+		gerar_um_latex(*gerar(),num,tex.write)
 	fechar_latex(tex.write)
