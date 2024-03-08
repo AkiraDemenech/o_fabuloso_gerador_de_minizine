@@ -287,7 +287,8 @@ dados= {
 	 'Gustavo Palote': ['na galáxia vegana'],
 	 'Danilo Calcanhoto': ['no cemitério'],
 	 'Júlia Demenech Mori': ['na quitanda do seu Fruta'],
-	 'Lucas Malezan': ['no hospital']},
+	 'Lucas Malezan': ['no hospital'],
+	 'Mari P': ['na calçada']},
  'Ps': {
 	'Akira Demenech': [('Está alegre', 'Está alegre', 'Está alegre', 'Está alegre'),
 		 ('Sempre em movimento está', 'Sempre em movimento está', 'Sempre em movimento está', 'Sempre em movimento está'),

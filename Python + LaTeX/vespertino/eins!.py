@@ -173,4 +173,7 @@ def gerar_um_latex (frases, aut, id=None, escrever=print):
 	\\end{enumerate}
 ''')
 
+	for a,b,c in frases:
+		print(a,b,c)
+		escrever('\n\n\\vfill \\item\n' + a[-1] + '\t%' + a[1] + '\t' + a[0] + '\n' + c + '\n' + b[-1] + '\t%' + b[1] + '\t' + b[0])
 gerar_um_latex(*gerar()[:2],0)
