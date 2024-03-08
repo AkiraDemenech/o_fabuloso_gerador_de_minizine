@@ -3,6 +3,19 @@ import random
 import os	
 import sys 
 
+sorteados = []
+
+def sortear (i, j = None):
+
+	if j == None:
+		j = i
+		i = 0
+
+	k = random.randint(i,j)
+	sorteados.append((i, j, k))
+
+	return k
+
 def creditar (nomes, n):
 	if not n in nomes:
 		nomes[n] = 0
@@ -54,9 +67,9 @@ def escolher (partes, x, y = None, d = None):
 		return escolher(partes, X + y), escolher(partes, x + Y), lado
 	
 	nomes = partes[x]	
-	n = list(nomes)[random.randint(0, len(nomes) - 1)]
+	n = list(nomes)[sortear(0, len(nomes) - 1)]
 
-	e = nomes[n].pop(random.randint(0, len(nomes[n]) - 1)) 	
+	e = nomes[n].pop(sortear(0, len(nomes[n]) - 1)) 	
 	if not len(nomes[n]):
 		print('%Utilizados todos os',x,'de',n)
 		nomes.pop(n)
@@ -84,6 +97,7 @@ def gerar (largura = 4, coluna = (lugar, sujeito, predicado), dados = eins.dados
 
 	# matriz
 	teste = [list(coluna) for c in range(largura)]
+	
 	frases = []
 	aut = {}
 
@@ -91,7 +105,7 @@ def gerar (largura = 4, coluna = (lugar, sujeito, predicado), dados = eins.dados
 	pos = []
 	for c in range(len(teste)):
 		for h in range(len(teste[c])):
-			pos.insert(random.randint(0,len(pos)),(c,h))
+			pos.insert(sortear(0,len(pos)),(c,h))
 
 	# pares 
 	while len(pos):	
@@ -120,14 +134,18 @@ def gerar (largura = 4, coluna = (lugar, sujeito, predicado), dados = eins.dados
 
 		frases.append((a,b,c))
 
-	return frases, aut, teste	
+	sorteios = list(sorteados)	
+	sorteados.clear()
+
+	return frases, aut, sorteios, teste	
 
 
 	
 
-def gerar_um_latex (frases, aut, id=None, escrever=print):
-	escrever('''\\ttfamily % monoespaçada
-\\pagenumbering{gobble}
+def gerar_um_latex (frases, aut, sorte=None, id=None, escrever=print):
+	escrever('''\n\n\\pagebreak
+			\\ttfamily % monoespaçada
+			\\pagenumbering{gobble} % nenhuma numeração
 
 	\\ 
 	\\vfill
@@ -157,7 +175,12 @@ def gerar_um_latex (frases, aut, id=None, escrever=print):
 \\pagebreak
 
 	\\begin{turn}{180}	
-		\\begin{minipage}{\textwidth}
+		\\begin{minipage}{\\textwidth}''')
+	
+	if sorte != None:
+		escrever(str(sorte))
+		  
+	escrever('''	  
 				
 		\\end{minipage}	
 	\\end{turn} 
@@ -167,13 +190,34 @@ def gerar_um_latex (frases, aut, id=None, escrever=print):
 \\large
 
 	\\begin{enumerate}
-''')	
 	
+''')			
+
+	for a,b,c in frases:
+		print('%',a,b,c,sep='\t')
+		escrever('\n\n\\vfill \\item\n' + a[-1] + '\t%' + a[1] + '\t' + a[0] + (('\n' + c) if c else '') + '\n' + b[-1] + '\t%' + b[1] + '\t' + b[0])
+
 	escrever('''
 	\\end{enumerate}
 ''')
 
-	for a,b,c in frases:
-		print(a,b,c)
-		escrever('\n\n\\vfill \\item\n' + a[-1] + '\t%' + a[1] + '\t' + a[0] + '\n' + c + '\n' + b[-1] + '\t%' + b[1] + '\t' + b[0])
-gerar_um_latex(*gerar()[:2],0)
+def abrir_latex (escrever=print):
+	escrever('''\\documentclass[12pt]{article}
+
+\\usepackage[a6paper, left=0.3in, right=0.7in, top=1cm]{geometry}
+\\usepackage{rotating}
+
+%\\usepackage[T1]{fontenc}
+%\\usepackage[brazil]{babel}
+
+\\begin{document}
+		  ''')
+	
+def fechar_latex (escrever=print):	
+	escrever('\n\n\\end{document}')
+
+with open(programa + '.tex', 'w', encoding='utf8') as tex:
+	abrir_latex(tex.write)
+	for num in range(5):	
+		gerar_um_latex(*gerar()[:3],num,tex.write)
+	fechar_latex(tex.write)
