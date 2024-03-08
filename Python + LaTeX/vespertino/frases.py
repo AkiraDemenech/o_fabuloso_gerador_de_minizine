@@ -54,5 +54,6 @@ with open(arq_resultado,'w',encoding='utf-8') as res:
 	print('F=',2,file=res)
 	print('M=',3,file=res)
 
+	print('e=',4,file=res)
 
 	print('\ndados=', str(dados).replace('),','),\n\t\t').replace('],','],\n\t').replace('},','},\n').replace('{','{\n\t'), file=res)		

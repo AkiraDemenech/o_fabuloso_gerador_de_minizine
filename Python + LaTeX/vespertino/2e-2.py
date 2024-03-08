@@ -2,6 +2,7 @@ f= False
 m= True
 F= 2
 M= 3
+e= 4
 
 dados= {
 	'Ll': {
@@ -224,7 +225,8 @@ dados= {
 	 'Gustavo Palote': [('A doutora intoxicada',)],
 	 'Danilo Calcanhoto': [('A Duquesa',)],
 	 'Júlia Demenech Mori': [('A dona Madalena',)],
-	 'Lucas Malezan': [('A barata',)]},
+	 'Lucas Malezan': [('A barata',)],
+	 'Mari P': [('Kim',)]},
  'sP': {
 	'Akira Demenech': [('diz que tem 7 saias de filó', 'diz que tem 7 saias de filó', 'diz que tem 7 saias de filó', 'diz que tem 7 saias de filó'),
 		 ('tem 1 só', 'tem 1 só', 'tem 1 só', 'tem 1 só'),
@@ -247,7 +249,8 @@ dados= {
 	 'Gustavo Palote': [('afirma que a terra é plana', 'afirma que a terra é plana', 'afirma que a terra é plana', 'afirma que a terra é plana')],
 	 'Danilo Calcanhoto': [('brilha no céu estrelado', 'brilha no céu estrelado', 'brilha no céu estrelado', 'brilha no céu estrelado')],
 	 'Júlia Demenech Mori': [('distribui pão quentinho pela vizinhança', 'distribui pão quentinho pela vizinhança', 'distribui pão quentinho pela vizinhança', 'distribui pão quentinho pela vizinhança')],
-	 'Lucas Malezan': [('quer trabalhar', 'quer trabalhar', 'quer trabalhar', 'quer trabalhar')]},
+	 'Lucas Malezan': [('quer trabalhar', 'quer trabalhar', 'quer trabalhar', 'quer trabalhar')],
+	 'Mari P': [('diz odiar Joana', 'diz odiar Joana', 'diz odiar Joana', 'diz odiar Joana')]},
  'Pl': {
 	'Akira Demenech': ['Alguém quebrou um vaso sanitário', 'Regaram as plantas', 'As luzes foram acesas'],
 	 'Debora Maruyama': ['algo se foi'],
@@ -265,7 +268,8 @@ dados= {
 	 'Gustavo Palote': ['comeram bife'],
 	 'Danilo Calcanhoto': ['as árvores foram derrubadas'],
 	 'Júlia Demenech Mori': ['Fizeram um barraco'],
-	 'Lucas Malezan': ['Renderam inocentes']},
+	 'Lucas Malezan': ['Renderam inocentes'],
+	 'Mari P': ['Alguém podou o arbusto']},
  'pL': {
 	'Akira Demenech': ['no telhado da sobrinha da Maria', 'no terreno baldio', 'nas ruínas'],
 	 'Debora Maruyama': ['nos olhos do mágico'],
@@ -303,7 +307,8 @@ dados= {
 	 'Gustavo Palote': [('Lacrou com força', 'Lacrou com força', 'Lacrou com força', 'Lacrou com força')],
 	 'Danilo Calcanhoto': [('Clamaram um feitiço alegre', 'Clamaram um feitiço alegre', 'Clamaram um feitiço alegre', 'Clamaram um feitiço alegre')],
 	 'Júlia Demenech Mori': [('Circulou pelo bosque artificial', 'Circulou pelo bosque artificial', 'Circulou pelo bosque artificial', 'Circulou pelo bosque artificial')],
-	 'Lucas Malezan': [('Desgraçada é', 'Desgraçada é', 'Desgraçada é', 'Desgraçada é')]},
+	 'Lucas Malezan': [('Desgraçada é', 'Desgraçada é', 'Desgraçada é', 'Desgraçada é')],
+	 'Mari P': [('Chorou', 'Chorou', 'Chorou', 'Chorou')]},
  'pS': {
 	'Akira Demenech': [('a galinha-d’angola',),
 		 ('o futuro',),
@@ -323,7 +328,8 @@ dados= {
 	 'Gustavo Palote': [('a cientista futurista',)],
 	 'Danilo Calcanhoto': [('as bruxas',)],
 	 'Júlia Demenech Mori': [('a bióloga Pereira',)],
-	 'Lucas Malezan': [('a barata Gregor Samsa',)]},
+	 'Lucas Malezan': [('a barata Gregor Samsa',)],
+	 'Mari P': [('o passarinho',)]},
  'Pp': {
 	'Akira Demenech': ['Abasteceram o caminhão do João', 'Um computador HP foi formatado', 'Queimou o churrasco'],
 	 'Debora Maruyama': ['incendiaram o mapa'],
@@ -340,7 +346,8 @@ dados= {
 	 'Gustavo Palote': ['Deram um grito'],
 	 'Danilo Calcanhoto': ['Arrancaram a flecha do cervo'],
 	 'Júlia Demenech Mori': ['Um desfile carnavalesco festejava'],
-	 'Lucas Malezan': ['A menina apertava o passo']},
+	 'Lucas Malezan': ['A menina apertava o passo'],
+	 'Mari P': ['Dirigiram a ambulância']},
  'pP': {
 	'Akira Demenech': ['de onde alguém pulava corda', 'de onde mudou-se a senha do wi-fi', 'do pão de alho chorando pela separação'],
 	 'Debora Maruyama': ['de onde perdeu-se o tesouro'],
@@ -357,4 +364,5 @@ dados= {
 	 'Gustavo Palote': ['de onde amassavam um pão'],
 	 'Danilo Calcanhoto': ['de onde alguém pulava corda'],
 	 'Júlia Demenech Mori': ['de uma fúnebre cerimônia'],
-	 'Lucas Malezan': ['de uma figura suspeita que fugia da menina']}}
+	 'Lucas Malezan': ['de uma figura suspeita que fugia da menina'],
+	 'Mari P': ['do acidente']}}

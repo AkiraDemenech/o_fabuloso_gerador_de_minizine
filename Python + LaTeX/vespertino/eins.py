@@ -23,7 +23,8 @@ dados= {
 	 'Gustavo Palote': ['O esgoto do bairro igapó fica'],
 	 'Danilo Calcanhoto': ['O palácio real está'],
 	 'Júlia Demenech Mori': ['O cruzamento dos tijolos amarelos está'],
-	 'Lucas Malezan': ['Uma pizzaria fica']},
+	 'Lucas Malezan': ['Uma pizzaria fica'],
+	 'Mari P': ['A árvore está']},
  'lL': {
 	'Akira Demenech': ['da casa azul', 'dos correios', 'do lixeiro cheio de garrafas quebradas'],
 	 'Debora Maruyama': ['do zoológico'],
@@ -42,7 +43,8 @@ dados= {
 	 'Gustavo Palote': ['da feira da lua'],
 	 'Danilo Calcanhoto': ['da rua pavimentada'],
 	 'Júlia Demenech Mori': ['do ginásio olímpico'],
-	 'Lucas Malezan': ['de uma lanchonete']},
+	 'Lucas Malezan': ['de uma lanchonete'],
+	 'Mari P': ['do poste de luz']},
  'Ls': {
 	'Akira Demenech': ['Nos fundos do 201', 'Nas casas geminadas', 'Em uma decrépita mansão'],
 	 'Debora Maruyama': ['em águas rasas'],
@@ -60,7 +62,8 @@ dados= {
 	 'Gustavo Palote': ['No circo animado'],
 	 'Danilo Calcanhoto': ['Em uma caverna escura'],
 	 'Júlia Demenech Mori': ['Nos labirintos do quintal'],
-	 'Lucas Malezan': ['Em Xique-Xique Bahia']},
+	 'Lucas Malezan': ['Em Xique-Xique Bahia'],
+	 'Mari P': ['No poste de luz']},
  'lS': {
 	'Akira Demenech': ['mora o cachorro grande', 'tem uma samambaia festeira', 'o Fulano vive'],
 	 'Debora Maruyama': ['o peixe se afoga'],
@@ -78,7 +81,8 @@ dados= {
 	 'Gustavo Palote': ['tem uma ratazana fedida'],
 	 'Danilo Calcanhoto': ['vive um dragão adormecido'],
 	 'Júlia Demenech Mori': ['as lagartixas batalham'],
-	 'Lucas Malezan': ['vive minha namorada']},
+	 'Lucas Malezan': ['vive minha namorada'],
+	 'Mari P': ['vive o passarinho']},
  'Lp': {
 	'Akira Demenech': ['No porão do Zé', 'Em cima do muro de tijolos', 'Nas mesas da pracinha'],
 	 'Debora Maruyama': ['no ônibus'],
@@ -97,7 +101,8 @@ dados= {
 	 'Gustavo Palote': ['Na escola zumbi'],
 	 'Danilo Calcanhoto': ['Nas ruínas da antiga fortaleza'],
 	 'Júlia Demenech Mori': ['No ponto do ônibus espacial'],
-	 'Lucas Malezan': ['Na escola']},
+	 'Lucas Malezan': ['Na escola'],
+	 'Mari P': ['Na rua']},
  'lP': {
 	'Akira Demenech': ['alguém caiu', 'jogou-se cartas', 'foi ouvido um barulho'],
 	 'Debora Maruyama': ['alguém chorou'],
@@ -116,7 +121,8 @@ dados= {
 	 'Gustavo Palote': ['cantaram músicas fúnebres'],
 	 'Danilo Calcanhoto': ['foi ouvida uma música misteriosa'],
 	 'Júlia Demenech Mori': ['ouviu-se buzinas estrondosas'],
-	 'Lucas Malezan': ['alguém caiu no buraco']},
+	 'Lucas Malezan': ['alguém caiu no buraco'],
+	 'Mari P': ['acidentou-se alguém']},
  'Sl': {
 	'Akira Demenech': ['O gato mora', 'Tem uma pombinha mãe-solo', 'O medo existencial vive'],
 	 'Debora Maruyama': ['a exaustão deságua'],
@@ -135,7 +141,8 @@ dados= {
 	 'Gustavo Palote': ['O pão vive'],
 	 'Danilo Calcanhoto': ['A rainha rouba'],
 	 'Júlia Demenech Mori': ['Tigres-siberianos dormiam'],
-	 'Lucas Malezan': ['Agostinho Carrara mora']},
+	 'Lucas Malezan': ['Agostinho Carrara mora'],
+	 'Mari P': ['O passarinho ama deleitar-se']},
  'sL': {
 	'Akira Demenech': ['na árvore podada', 'em uma casa térrea alugada', 'na farmácia'],
 	 'Debora Maruyama': ['em casa'],
@@ -154,7 +161,8 @@ dados= {
 	 'Gustavo Palote': ['na feira da lua'],
 	 'Danilo Calcanhoto': ['no supermercado'],
 	 'Júlia Demenech Mori': ['na avenida principal'],
-	 'Lucas Malezan': ['em Alcântara']},
+	 'Lucas Malezan': ['em Alcântara'],
+	 'Mari P': ['no arbusto de mirtilos']},
  'Ss': {
 	'Akira Demenech': ['Uma pedra mora', 'A partitura para violoncelo vive', 'A verruga simpática se instalou'],
 	 'Debora Maruyama': ['as entranhas do rato estavam'],
@@ -173,7 +181,8 @@ dados= {
 	 'Gustavo Palote': ['O lobo idiota mora'],
 	 'Danilo Calcanhoto': ['O livro encantado vive'],
 	 'Júlia Demenech Mori': ['O vira-lata caramelo anda'],
-	 'Lucas Malezan': ['Minha casa fica']},
+	 'Lucas Malezan': ['Minha casa fica'],
+	 'Mari P': ['Joana mora']},
  'sS': {
 	'Akira Demenech': ['do corvo', 'da minhoca que não gosta de maçã', 'de um copo descartável velho'],
 	 'Debora Maruyama': ['do urubu'],
@@ -192,7 +201,8 @@ dados= {
 	 'Gustavo Palote': ['do pão'],
 	 'Danilo Calcanhoto': ['da fada distraída'],
 	 'Júlia Demenech Mori': ['do infame Jardiel'],
-	 'Lucas Malezan': ['do meu vizinho']},
+	 'Lucas Malezan': ['do meu vizinho'],
+	 'Mari P': ['do passarinho']},
  'Sp': {
 	'Akira Demenech': [('A barata',f),
 		 ('Ela',f),
@@ -216,7 +226,8 @@ dados= {
 	 'Gustavo Palote': [('A doutora intoxicada',f)],
 	 'Danilo Calcanhoto': [('A Duquesa',f)],
 	 'Júlia Demenech Mori': [('A dona Madalena',f)],
-	 'Lucas Malezan': [('A barata',f)]},
+	 'Lucas Malezan': [('A barata',)],
+	 'Mari P': [('Kim',)]},
  'sP': {
 	'Akira Demenech': [('diz que tem 7 saias de filó', 'diz que tem 7 saias de filó', 'dizem que tem 7 saias de filó', 'dizem que tem 7 saias de filó', 'disse que tenho 7 saias de filó'),
 		 ('tem 1 só', 'tem 1 só', 'têm 1 só', 'têm 1 só', 'tenho 1 só'),
@@ -240,7 +251,8 @@ dados= {
 	 'Gustavo Palote': [('afirma que a terra é plana', 'afirma que a terra é plana', 'afirmam que a terra é plana', 'afirmam que a terra é plana', 'afirmo que a terra é plana')],
 	 'Danilo Calcanhoto': [('brilha no céu estrelado', 'brilha no céu estrelado', 'brilham no céu estrelado', 'brilham no céu estrelado', 'brilho no céu estrelado')],
 	 'Júlia Demenech Mori': [('distribui pão quentinho pela vizinhança', 'distribui pão quentinho pela vizinhança', 'distribuem pão quentinho pela vizinhança', 'distribuem pão quentinho pela vizinhança', 'distribuo pãp quentinho pela vizinhança')],
-	 'Lucas Malezan': [('quer trabalhar', 'quer trabalhar', 'querem trabalhar', 'querem trabalhar', 'quero trabalhar')]},
+	 'Lucas Malezan': [('quer trabalhar', 'quer trabalhar', 'quer trabalhar', 'quer trabalhar')],
+	 'Mari P': [('diz odiar Joana', 'diz odiar Joana', 'diz odiar Joana', 'diz odiar Joana')]},
  'Pl': {
 	'Akira Demenech': ['Alguém quebrou um vaso sanitário', 'Regaram as plantas', 'As luzes foram acesas'],
 	 'Debora Maruyama': ['algo se foi'],
@@ -258,7 +270,8 @@ dados= {
 	 'Gustavo Palote': ['comeram bife'],
 	 'Danilo Calcanhoto': ['as árvores foram derrubadas'],
 	 'Júlia Demenech Mori': ['Fizeram um barraco'],
-	 'Lucas Malezan': ['Renderam inocentes']},
+	 'Lucas Malezan': ['Renderam inocentes'],
+	 'Mari P': ['Alguém podou o arbusto']},
  'pL': {
 	'Akira Demenech': ['no telhado da sobrinha da Maria', 'no terreno baldio', 'nas ruínas'],
 	 'Debora Maruyama': ['nos olhos do mágico'],
@@ -296,7 +309,8 @@ dados= {
 	 'Gustavo Palote': [('Lacrou com força', 'Lacrou com força', 'Lacraram com força', 'Lacraram com força')],
 	 'Danilo Calcanhoto': [('Clamou um feitiço alegre', 'Clamou um feitiço alegre', 'Clamaram um feitiço alegre', 'Clamaram um feitiço alegre')],
 	 'Júlia Demenech Mori': [('Circulou pelo bosque artificial', 'Circulou pelo bosque artificial', 'Circularam pelo bosque artificial', 'Circularam pelo bosque artificial')],
-	 'Lucas Malezan': [('Desgraçada é', 'Desgraçado é', 'Desgraçadas são', 'Desgraçados são')]},
+	 'Lucas Malezan': [('Desgraçada é', 'Desgraçada é', 'Desgraçada é', 'Desgraçada é')],
+	 'Mari P': [('Chorou', 'Chorou', 'Chorou', 'Chorou')]},
  'pS': {
 	'Akira Demenech': [('a galinha-d’angola',f),
 		 ('o futuro',m),
@@ -316,7 +330,8 @@ dados= {
 	 'Gustavo Palote': [('a cientista futurista',f)],
 	 'Danilo Calcanhoto': [('as bruxas',F)],
 	 'Júlia Demenech Mori': [('a bióloga Pereira',f)],
-	 'Lucas Malezan': [('a barata Gregor Samsa',f)]},
+	 'Lucas Malezan': [('a barata Gregor Samsa',)],
+	 'Mari P': [('o passarinho',)]},
  'Pp': {
 	'Akira Demenech': ['Abasteceram o caminhão do João', 'Um computador HP foi formatado', 'Queimou o churrasco'],
 	 'Debora Maruyama': ['incendiaram o mapa'],
@@ -333,7 +348,8 @@ dados= {
 	 'Gustavo Palote': ['Deram um grito'],
 	 'Danilo Calcanhoto': ['Arrancaram a flecha do cervo'],
 	 'Júlia Demenech Mori': ['Um desfile carnavalesco festejava'],
-	 'Lucas Malezan': ['A menina apertava o passo']},
+	 'Lucas Malezan': ['A menina apertava o passo'],
+	 'Mari P': ['Dirigiram a ambulância']},
  'pP': {
 	'Akira Demenech': ['de onde alguém pulava corda', 'de onde mudou-se a senha do wi-fi', 'do pão de alho chorando pela separação'],
 	 'Debora Maruyama': ['de onde perdeu-se o tesouro'],
@@ -350,4 +366,5 @@ dados= {
 	 'Gustavo Palote': ['de onde amassavam um pão'],
 	 'Danilo Calcanhoto': ['de onde alguém pulava corda'],
 	 'Júlia Demenech Mori': ['de uma fúnebre cerimônia'],
-	 'Lucas Malezan': ['de uma figura suspeita que fugia da menina']}}
+	 'Lucas Malezan': ['de uma figura suspeita que fugia da menina'],
+	 'Mari P': ['do acidente']}}
