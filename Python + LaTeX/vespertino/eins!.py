@@ -48,6 +48,8 @@ def imagem (v, l, h):
 #	pyplot.show()
 	return arq
 
+
+
 sorteados = []
 
 def sortear (i, j = None):
@@ -290,8 +292,8 @@ def abrir_latex (escrever=print):
 \\usepackage[a6paper, left=0.3in, right=0.7in, top=1cm]{geometry}
 \\usepackage{rotating}
 
-%\\usepackage[T1]{fontenc}
-%\\usepackage[brazil]{babel}
+\\usepackage[T1]{fontenc}
+\\usepackage[brazil]{babel}
 
 \\begin{document}
 		  ''')
